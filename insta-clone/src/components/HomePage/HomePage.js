@@ -1,17 +1,14 @@
-import '../../styles/HomePage.css';
-import { useUser, useFetchUser } from '../contexts/UserContext';
+import { userIsloggedIn } from '../../firebase/user';
+import SignUpPage from '../SignUpPage/SignUpPage';
+import FeedPage from '../FeedPage/FeedPage';
 
 const HomePage = () => {
-  // if not logged in, show SignUpPage with switching image. Else, show FeedPage
-  const user = useUser();
-  const fetchUser = useFetchUser();
-
-  return (
-    <div id='homePage'>
-      <p>{user.name}</p>
-      <button onClick={() => fetchUser('mock_id')}></button>
-    </div>
-  );
+  // if not logged in, show SignUpPage. Else, show FeedPage
+  if (userIsloggedIn()) {
+    return <FeedPage />
+  } else {
+    return <SignUpPage />
+  }
 }
 
 export default HomePage;

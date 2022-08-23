@@ -13,10 +13,10 @@ const useFetchUser = () => {
 }
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: 'none' });
+  const [user, setUser] = useState(getUser());
 
-  const fetchUser = (uid) => {
-    setUser(getUser(uid));
+  const fetchUser = () => {
+    setUser(getUser());
   }
 
   return (
