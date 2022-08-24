@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { getUser } from '../../firebase/user';
+import { getUser } from '../../firebase/authentication';
 
 const UserContext = React.createContext();
 const FetchUserContext = React.createContext();

@@ -1,9 +1,18 @@
-import { userIsloggedIn } from '../../firebase/user';
+import { userIsloggedIn } from '../../firebase/authentication';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { useFetchUser } from '../contexts/UserContext';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import FeedPage from '../FeedPage/FeedPage';
+import { useEffect } from 'react';
 
 const HomePage = () => {
   // if not logged in, show SignUpPage. Else, show FeedPage
+  const fetchUser = useFetchUser();
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), fetchUser);
+  }, []);
+
   if (userIsloggedIn()) {
     return <FeedPage />
   } else {

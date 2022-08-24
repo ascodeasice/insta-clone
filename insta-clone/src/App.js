@@ -3,6 +3,7 @@ import HomePage from './components/HomePage/HomePage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import { UserProvider } from './components/contexts/UserContext';
 
+
 const App = () => {
   return (
     <>

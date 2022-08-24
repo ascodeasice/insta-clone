@@ -19,6 +19,7 @@
 
 #signUpButton:disabled {
   background-color: #b2dffc;
+  cursor: default;
 }
 
 #loginBox {
