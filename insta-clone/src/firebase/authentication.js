@@ -1,5 +1,6 @@
 import { getAuth, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { app } from './firebase-config';
+import { setDoc, doc } from 'firebase/firestore';
+import { app, db } from './firebase-config';
 
 const userIsloggedIn = () => !!getAuth(app).currentUser;
 
@@ -16,4 +17,23 @@ const signOutUser = () => {
   signOut(getAuth(app));
 }
 
-export { userIsloggedIn, getUser, googleSignIn, signOutUser };
+const saveUserData = (userName, fullName, email, password = null) => {
+  const user = getUser();
+  if (user) {
+    setDoc(doc(db, `users/${user.uid}`), {
+      id: user.uid,
+      fullName: fullName ? userName : fullName,
+      userName: userName,
+      email: email,
+      password: password ? password : 'none'
+    });
+  }
+}
+
+const userNameExist = (name) => {
+
+}
+
+
+
+export { userIsloggedIn, getUser, googleSignIn, signOutUser, saveUserData };

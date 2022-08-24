@@ -1,4 +1,4 @@
-import { userIsloggedIn } from '../../firebase/authentication';
+import { userIsloggedIn, saveUserData } from '../../firebase/authentication';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { useFetchUser } from '../contexts/UserContext';
 import SignUpPage from '../SignUpPage/SignUpPage';

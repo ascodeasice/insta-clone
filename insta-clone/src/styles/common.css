@@ -17,6 +17,7 @@
   background-color: var(--lighterGrey);
   padding-left: 5px;
   height: var(--accountInputHeight);
+  border-radius: 2px;
 }
 
 #accountInputContainer>input:focus {
