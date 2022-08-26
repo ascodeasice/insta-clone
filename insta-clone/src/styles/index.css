@@ -4,6 +4,8 @@
   --lighterGrey: #fafafa;
   --blue: #0095f6;
   --accountInputHeight: 30px;
+  --navBarHeight: 60px;
+  --iconHeight: calc(0.4 * var(--navBarHeight));
 }
 
 body {
@@ -26,4 +28,8 @@ a {
 
 .page {
   min-height: 100vh;
+}
+
+.box {
+  border: 1px solid var(--lightGrey);
 }

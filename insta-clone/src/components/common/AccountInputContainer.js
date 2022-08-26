@@ -1,13 +1,13 @@
 import GoogleLoginButton from './GoogleLoginButton';
-import OrLine from './OrLine';
+// import OrLine from './OrLine';
 
 const AccountInputContainer = ({ children }) => {
   return (
-    <div id="accountInputContainer">
-      <h1 id='appName'>Instagram</h1>
+    <div id="accountInputContainer" className='box'>
+      <h1 className='appName'>Instagram</h1>
       <p id='introText'>Sign up to waste your time on funny videos and comparing with others</p>
       <GoogleLoginButton />
-      <OrLine />
+      {/* <OrLine /> */}
       {children}
     </div>
   )

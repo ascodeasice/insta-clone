@@ -1,0 +1,22 @@
+#navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: var(--navBarHeight);
+}
+
+#iconContainer {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  column-gap: 20px;
+}
+
+.navBarIcon {
+  height: var(--iconHeight);
+  width: var(--iconHeight);
+  cursor: pointer;
+}
+
+#profilePic {
+  border-radius: 2rem;
+}

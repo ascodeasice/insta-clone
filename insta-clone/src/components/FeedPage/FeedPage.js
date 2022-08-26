@@ -1,12 +1,14 @@
 import { signOutUser } from "../../firebase/authentication";
+import NavBar from "../NavBar/NavBar";
 
 const FeedPage = () => {
-
   return (
-    <div id="feedPage" className="page">
-      <h1>FeedPage</h1>
-      <button onClick={signOutUser}>Sign Out</button>
-    </div >
+    <>
+      <NavBar />
+      <div id="feedPage" className="page">
+        <button onClick={signOutUser}>Sign Out</button>
+      </div >
+    </>
   );
 }
 

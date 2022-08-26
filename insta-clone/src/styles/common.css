@@ -4,11 +4,11 @@
   grid-template-columns: 1fr;
   justify-content: center;
 
-  border: 1px solid var(--lightGrey);
   padding: 30px;
   width: 250px;
   background-color: white;
   margin-top: 20px;
+  height: fit-content;
 }
 
 #accountInputContainer>input {
@@ -36,9 +36,10 @@
   height: var(--accountInputHeight);
 }
 
-#appName {
+.appName {
   font-family: 'Pacifico', sans-serif;
   user-select: none;
+  color: black;
 }
 
 #introText {
