@@ -1,12 +1,17 @@
-import { signOutUser } from "../../firebase/authentication";
 import NavBar from "../NavBar/NavBar";
+import UserAccount from "./UserAccount";
+import Post from '../Post/Post';
+import '../../styles/FeedPage.css';
 
 const FeedPage = () => {
   return (
     <>
       <NavBar />
       <div id="feedPage" className="page">
-        <button onClick={signOutUser}>Sign Out</button>
+        <UserAccount />
+        <Post />
+        <Post />
+        <Post />
       </div >
     </>
   );

@@ -3,6 +3,15 @@
   align-items: center;
   justify-content: space-around;
   height: var(--navBarHeight);
+  background-color: white;
+  border-left: none;
+  border-right: none;
+
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 5;
 }
 
 #iconContainer {

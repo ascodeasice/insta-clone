@@ -1,0 +1,52 @@
+#feedPage {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 10px;
+  justify-content: center;
+}
+
+#userAccount {
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
+  grid-template-rows: min-content;
+  column-gap: 10px;
+  align-items: center;
+
+  grid-row: 1/2;
+  grid-column: 2/-1;
+}
+
+#accountPicture {
+  width: var(--accountPictureWidth);
+  height: var(--accountPictureWidth);
+  border-radius: var(--accountPictureWidth);
+}
+
+#userName {
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0;
+}
+
+#fullName {
+  white-space: nowrap;
+  margin: 0;
+}
+
+#signOut {
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post {
+  width: var(--postWidth);
+  height: var(--postHeight);
+  border-radius: 10px;
+  background-color: white;
+}

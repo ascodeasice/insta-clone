@@ -2,7 +2,6 @@ import ProfilePicture from "./ProfilePicture";
 import HomeIcon from "./HomeIcon";
 import LikeIcon from "./LikeIcon";
 import AddPostIcon from "./AddPostIcon";
-// import { IconIndexProvider } from "../contexts/IconIndexContext";
 import { useState } from "react";
 
 const IconContainer = () => {

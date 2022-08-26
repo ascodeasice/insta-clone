@@ -6,6 +6,9 @@
   --accountInputHeight: 30px;
   --navBarHeight: 60px;
   --iconHeight: calc(0.4 * var(--navBarHeight));
+  --accountPictureWidth: 50px;
+  --postHeight: 600px;
+  --postWidth: min(450px, 100vw);
 }
 
 body {
