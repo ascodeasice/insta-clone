@@ -1,5 +1,5 @@
 import { getAuth, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { setDoc, doc, getDoc } from 'firebase/firestore';
+import { setDoc, doc, getDoc, getDocs, collection } from 'firebase/firestore';
 import { app, db } from './firebase-config';
 
 const userIsloggedIn = () => !!getAuth(app).currentUser;
@@ -36,16 +36,22 @@ const saveUserData = async () => {
   }
 
   await setDoc(doc(db, path), {
+    uid: user.uid,
     userName: user.displayName,
     fullName: user.displayName,
     photoURL: user.photoURL
   });
 }
 
-const userNameExist = (name) => {
+const userNameExist = async (name) => {
+  const users = await getDocs(collection(db, 'users'));
+  return (users.docs.some(user => user.data().userName === name))
+}
 
+const getUserData = async (uid) => {
+  const docSnap = await getDoc(doc(db, `users/${uid}`));
+  return docSnap.data();
 }
 
 
-
-export { userIsloggedIn, getUser, googleSignIn, signOutUser, saveUserData };
+export { userIsloggedIn, getUser, googleSignIn, signOutUser, saveUserData, userNameExist, getUserData };

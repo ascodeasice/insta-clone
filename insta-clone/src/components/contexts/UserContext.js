@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { getUser } from '../../firebase/authentication';
+import { getUser, getUserData, userIsloggedIn } from '../../firebase/authentication';
 
 const UserContext = React.createContext();
 const FetchUserContext = React.createContext();
@@ -13,10 +13,14 @@ const useFetchUser = () => {
 }
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(null);
 
-  const fetchUser = () => {
-    setUser(getUser());
+  const fetchUser = async () => {
+    if (userIsloggedIn()) {
+      setUser(await getUserData(getUser().uid));
+    } else {
+      setUser(null);
+    }
   }
 
   return (

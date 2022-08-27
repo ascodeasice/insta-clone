@@ -8,10 +8,8 @@ const UserAccount = () => {
     <div id="userAccount">
       <img id='accountPicture' src={user.photoURL || '#'} alt='user' />
       <div id="names">
-        <p id='userName'>{user.displayName}</p>
-        {/* TODO get username with uid */}
-        <p id='fullName'>user name
-          {/* TODO get current user fullname(maybe store in db) */}</p>
+        <p id='userName'>{user.userName}</p>
+        <p id='fullName'>{user.fullName || ''}</p>
       </div>
       <p id='signOut' onClick={signOutUser}>Sign Out</p>
     </div >
