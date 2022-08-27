@@ -1,5 +1,5 @@
 import { getAuth, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { app, db } from './firebase-config';
 
 const userIsloggedIn = () => !!getAuth(app).currentUser;
@@ -17,17 +17,29 @@ const signOutUser = () => {
   signOut(getAuth(app));
 }
 
-const saveUserData = (userName, fullName, email, password = null) => {
-  const user = getUser();
-  if (user) {
-    setDoc(doc(db, `users/${user.uid}`), {
-      id: user.uid,
-      fullName: fullName ? userName : fullName,
-      userName: userName,
-      email: email,
-      password: password ? password : 'none'
-    });
+const docExists = async (path) => {
+  const docSnap = await getDoc(doc(db, path));
+  return docSnap.exists();
+}
+
+// save user's data when first logged in
+const saveUserData = async () => {
+  if (!userIsloggedIn()) {
+    return;
   }
+
+  const user = getUser();
+  const path = `users/${user.uid}`;
+
+  if (docExists(path)) {
+    return;
+  }
+
+  await setDoc(doc(db, path), {
+    userName: user.displayName,
+    fullName: user.displayName,
+    photoURL: user.photoURL
+  });
 }
 
 const userNameExist = (name) => {

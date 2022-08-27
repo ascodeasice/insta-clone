@@ -10,7 +10,10 @@ const HomePage = () => {
   const fetchUser = useFetchUser();
 
   useEffect(() => {
-    onAuthStateChanged(getAuth(), fetchUser);
+    onAuthStateChanged(getAuth(), () => {
+      fetchUser();
+      saveUserData();
+    });
   }, []);
 
   if (userIsloggedIn()) {
