@@ -31,7 +31,7 @@ const saveUserData = async () => {
   const user = getUser();
   const path = `users/${user.uid}`;
 
-  if (docExists(path)) {
+  if (await docExists(path)) {
     return;
   }
 

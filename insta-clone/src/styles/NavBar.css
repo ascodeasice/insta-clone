@@ -29,3 +29,39 @@
 #profilePic {
   border-radius: 2rem;
 }
+
+.dropDown {
+  position: relative;
+}
+
+.upArrow {
+  width: 0;
+  height: 0;
+  border-left: var(--arrowSize) solid transparent;
+  border-right: var(--arrowSize) solid transparent;
+  border-bottom: var(--arrowSize) solid black;
+  display: none;
+
+  position: absolute;
+  left: calc((var(--iconHeight) - 2 * var(--arrowSize)) / 2);
+  top: calc(var(--iconHeight) + var(--arrowSize));
+}
+
+#likePopUp {
+  position: absolute;
+  top: calc((var(--navBarHeight) + var(--iconHeight)) / 2 + 2px);
+  right: 0;
+
+  display: none;
+  width: 400px;
+  height: 300px;
+  z-index: 5;
+  background-color: white;
+  box-shadow: 0 0 3px grey;
+  border-radius: 2px;
+}
+
+#earlierText {
+  font-weight: bold;
+  padding-left: 10px;
+}

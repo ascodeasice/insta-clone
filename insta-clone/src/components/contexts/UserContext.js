@@ -16,10 +16,15 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const fetchUser = async () => {
-    if (userIsloggedIn()) {
-      setUser(await getUserData(getUser().uid));
-    } else {
+    if (!userIsloggedIn()) {
       setUser(null);
+      return;
+    }
+    const userData = await getUserData(getUser().uid);
+    if (userData) {
+      setUser(userData);
+    } else {
+      setUser(getUser());
     }
   }
 

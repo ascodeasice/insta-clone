@@ -9,6 +9,7 @@
   --accountPictureWidth: 50px;
   --postHeight: 600px;
   --postWidth: min(450px, 100vw);
+  --arrowSize: 10px;
 }
 
 body {
