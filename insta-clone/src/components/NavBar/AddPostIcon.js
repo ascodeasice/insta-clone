@@ -1,5 +1,6 @@
 import WhitePlusSquare from '../../assets/icons/whitePlusSquare.svg';
 import BlackPlusSquare from '../../assets/icons/blackPlusSquare.svg';
+import AddPostPopUp from './AddPostPopUp';
 
 
 const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {
@@ -8,8 +9,11 @@ const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {
   }
 
   return (
-    <img className="navBarIcon" src={iconIndex === index ? BlackPlusSquare : WhitePlusSquare} alt='add'
-      onClick={handleClick} />
+    <>
+      <img className="navBarIcon" src={iconIndex === index ? BlackPlusSquare : WhitePlusSquare} alt='add'
+        onClick={handleClick} />
+      <AddPostPopUp display={iconIndex === index ? 'block' : 'none'} setIconIndex={setIconIndex} />
+    </>
   )
 }
 

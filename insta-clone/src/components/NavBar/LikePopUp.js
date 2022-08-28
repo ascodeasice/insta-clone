@@ -5,6 +5,7 @@ const LikePopUp = ({ popUpDisplay }) => {
       <div id="likePopUp" style={{ display: popUpDisplay }}>
         <p id='earlierText'>Earlier</p>
         {/* TODO {userName} followed you */}
+        {/* someone liked your post */}
       </div>
     </>
   );
