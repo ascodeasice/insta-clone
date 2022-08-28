@@ -53,7 +53,7 @@
   right: 0;
 
   display: none;
-  width: 400px;
+  width: min(400px, 70vw);
   height: 300px;
   z-index: 5;
   background-color: white;
@@ -77,6 +77,100 @@
   opacity: 0.5;
 }
 
+.cancelIcon {
+  filter: invert(100%);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
 #addPostPopUp {
+  width: min(500px, 100vw);
+  height: var(--postHeight);
+  background-color: white;
+  border-radius: 10px;
+  z-index: 10;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: calc(var(--navBarHeight) + 40px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#createPostText {
+  text-align: center;
+  white-space: nowrap;
+  margin: 10px 0 10px 0;
+}
+
+#uploadContainer {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-content: center;
+  height: 550px;
+  overflow: auto;
+}
+
+#uploadIcon {
+  width: 60px;
+  height: 60px;
+}
+
+#uploadText {
+  text-align: center;
+  font-weight: normal;
+}
+
+#uploadWrapper {
+  display: inline-block;
+  position: relative
+}
+
+#uploadButton {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  height: 30px;
+  width: fit-content;
+  border-radius: 2px;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+#uploadInput {
+  opacity: 0;
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  cursor: pointer;
+}
+
+#previewImage {
+  width: var(--postWidth);
+  height: var(--postWidth);
+  justify-self: center;
+}
+
+#createPostContainer {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: min-content 1fr;
+
+  height: 550px;
+}
+
+#captionInput {
+  resize: none;
+  padding: 10px;
 }

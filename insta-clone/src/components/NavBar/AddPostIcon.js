@@ -12,7 +12,7 @@ const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {
     <>
       <img className="navBarIcon" src={iconIndex === index ? BlackPlusSquare : WhitePlusSquare} alt='add'
         onClick={handleClick} />
-      <AddPostPopUp display={iconIndex === index ? 'block' : 'none'} setIconIndex={setIconIndex} />
+      <AddPostPopUp index={index} iconIndex={iconIndex} setIconIndex={setIconIndex} />
     </>
   )
 }

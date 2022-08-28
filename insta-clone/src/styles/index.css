@@ -37,3 +37,9 @@ a {
 .box {
   border: 1px solid var(--lightGrey);
 }
+
+.fullLine {
+  width: 100%;
+  height: 1px;
+  background-color: var(--lightGrey);
+}
