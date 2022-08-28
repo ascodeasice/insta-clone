@@ -1,12 +1,13 @@
 import UploadImageIcon from '../../assets/icons/uploadImage.svg';
 
-const UploadImage = ({ setImageSrc }) => {
+const UploadImage = ({ setImageSrc, setImageFile }) => {
   const handleUpload = (e) => {
     const curFile = e.target.files[0];
     const objectURL = URL.createObjectURL(curFile);
+
+    setImageFile(curFile);
     setImageSrc(objectURL);
   }
-
 
   return (
     <>

@@ -1,16 +1,17 @@
 import BackIcon from '../../assets/icons/back.svg';
+import { savePostData } from '../../firebase/post';
 
-const PopUpHeader = ({ imageSrc, setDisplayDiscard }) => {
+const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile }) => {
   const goBack = () => {
     setDisplayDiscard(true);
   }
 
-  const post = () => {
-    console.log('posted');
-    // TODO save post info to firestore
+  const share = () => {
+    setShared(true);
+    savePostData(imageFile, postText);
   }
 
-  if (imageSrc === '#') {
+  if (imageFile === null) {
     return (
       <>
         <h4 id='createPostText'>Create new post</h4>
@@ -23,7 +24,7 @@ const PopUpHeader = ({ imageSrc, setDisplayDiscard }) => {
         <div id='popUpHeader'>
           <img id='backIcon' src={BackIcon} alt='back' onClick={goBack} />
           <h4 id='createPostText'>Create new post</h4>
-          <p id='shareText' onClick={post}>Share</p>
+          <p id='shareText' onClick={share}>Share</p>
         </div>
         <div className='fullLine'></div>
       </>

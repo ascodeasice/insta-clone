@@ -1,10 +1,11 @@
-const DiscardPostPopUp = ({ displayDiscard, setImageSrc, setDisplayDiscard }) => {
+const DiscardPostPopUp = ({ displayDiscard, setImageSrc, setDisplayDiscard, setImageFile }) => {
   const cancel = () => {
     setDisplayDiscard(false);
   }
 
   const discardPost = () => {
     setImageSrc('#');
+    setImageFile(null);
     setDisplayDiscard(false);
   }
 

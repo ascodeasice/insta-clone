@@ -4,12 +4,17 @@ import UploadImage from './UploadImage';
 import AddCaption from './AddCaption';
 import DiscardPostPopUp from './DiscardPostPopUp';
 import PopUpHeader from './PopUpHeader';
+import Posting from './Posting';
 import '../../styles/AddPostPopUp.css';
 
 const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
   const [imageSrc, setImageSrc] = useState('#');
+  const [imageFile, setImageFile] = useState(null);
   const [displayDiscard, setDisplayDiscard] = useState(false);
+  const [shared, setShared] = useState(false);
+  const [postText, setPostText] = useState('');
   const handleClickBg = () => {
+    setShared(false);
     if (imageSrc === '#') {
       setIconIndex(0);
     } else {
@@ -23,14 +28,14 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
         <img className='cancelIcon' src={Cross} alt='cancel' onClick={handleClickBg} />
       </div>
       <DiscardPostPopUp displayDiscard={displayDiscard} setDisplayDiscard={setDisplayDiscard}
-        setImageSrc={setImageSrc} />
+        setImageSrc={setImageSrc} setImageFile={setImageFile} />
       <div id='addPostPopUp' style={{ display: index === iconIndex ? 'block' : 'none' }}>
-        {/* <h4 id='createPostText'>Create new post</h4>
-        <div className='fullLine'></div> */}
-        <PopUpHeader imageSrc={imageSrc} setDisplayDiscard={setDisplayDiscard} />
+        <PopUpHeader imageFile={imageFile} setDisplayDiscard={setDisplayDiscard}
+          setShared={setShared} postText={postText} />
         {
-          imageSrc === '#' ? <UploadImage setImageSrc={setImageSrc} />
-            : <AddCaption imageSrc={imageSrc} />
+          imageSrc === '#' ? <UploadImage setImageSrc={setImageSrc} setImageFile={setImageFile} />
+            : shared ? <Posting />
+              : <AddCaption imageSrc={imageSrc} setPostText={setPostText} imageFile={imageFile} />
         }
       </div>
     </>
