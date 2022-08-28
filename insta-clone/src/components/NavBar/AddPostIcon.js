@@ -1,6 +1,6 @@
 import WhitePlusSquare from '../../assets/icons/whitePlusSquare.svg';
 import BlackPlusSquare from '../../assets/icons/blackPlusSquare.svg';
-import AddPostPopUp from './AddPostPopUp';
+import AddPostPopUp from '../AddPostPopUp/AddPostPopUp';
 
 
 const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {

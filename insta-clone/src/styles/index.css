@@ -43,3 +43,11 @@ a {
   height: 1px;
   background-color: var(--lightGrey);
 }
+
+.grey {
+  color: var(--grey);
+}
+
+.smallText {
+  font-size: 0.6rem;
+}
