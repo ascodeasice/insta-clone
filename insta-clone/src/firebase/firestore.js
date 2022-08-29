@@ -37,10 +37,6 @@ const docExists = async (path) => {
   return docSnap.exists();
 }
 
-const getPostData = () => {
-
-}
-
 // save user's data when first logged in
 const saveUserData = async () => {
   if (!userIsloggedIn()) {
@@ -72,5 +68,9 @@ const getUserData = async (uid) => {
   return docSnap.data();
 }
 
+const getPosts = async () => {
+  const postsSnap = await getDocs(collection(db, 'posts'));
+  return postsSnap.docs;
+}
 
-export { savePostData, docExists, getPostData, saveUserData, userNameExist, getUserData };
+export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts };

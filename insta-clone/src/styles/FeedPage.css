@@ -50,3 +50,30 @@
   border-radius: 10px;
   background-color: white;
 }
+
+.postHeader {
+  display: grid;
+  grid-template-columns: repeat(2, min-content) 1fr;
+  align-items: center;
+  column-gap: 10px;
+
+  padding: 10px;
+}
+
+.postUserName {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.postHeader>img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.postHeader>.moreIcon {
+  width: 20px;
+  height: 20px;
+  justify-self: flex-end;
+}

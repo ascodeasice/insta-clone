@@ -16,4 +16,11 @@ const signOutUser = () => {
   signOut(getAuth(app));
 }
 
-export { userIsloggedIn, getUser, googleSignIn, signOutUser };
+const getUid = () => {
+  if (!userIsloggedIn()) {
+    return null;
+  }
+  return getUser().uid;
+}
+
+export { userIsloggedIn, getUser, googleSignIn, signOutUser, getUid };
