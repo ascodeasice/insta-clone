@@ -1,5 +1,5 @@
 import BackIcon from '../../assets/icons/back.svg';
-import { savePostData } from '../../firebase/post';
+import { savePostData } from '../../firebase/storage';
 
 const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile, setDone, done }) => {
   const goBack = () => {

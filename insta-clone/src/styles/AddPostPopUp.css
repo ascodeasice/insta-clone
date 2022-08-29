@@ -189,7 +189,7 @@
   border-radius: 50%;
   position: fixed;
   inset: calc(50% - 50px);
-  animation: rot 2s linear infinite;
+  animation: rot 1s linear infinite;
 }
 
 @keyframes rot {
