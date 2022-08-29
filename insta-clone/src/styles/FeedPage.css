@@ -77,3 +77,22 @@
   height: 20px;
   justify-self: flex-end;
 }
+
+.postImage {
+  width: var(--postWidth);
+  height: var(--postWidth);
+}
+
+.iconBar {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  column-gap: 15px;
+
+  padding-left: 10px
+}
+
+.iconBar>img {
+  width: var(--iconHeight);
+  height: var(--iconHeight);
+  cursor: pointer;
+}

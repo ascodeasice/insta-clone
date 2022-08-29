@@ -25,7 +25,6 @@ const FeedPage = () => {
             return <Post key={i} data={post.data()} />
           })
         }
-        {/* TODO get all posts and map them */}
       </div >
     </>
   );

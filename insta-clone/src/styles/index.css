@@ -7,7 +7,7 @@
   --navBarHeight: 60px;
   --iconHeight: calc(0.4 * var(--navBarHeight));
   --accountPictureWidth: 50px;
-  --postHeight: 600px;
+  --postHeight: 700px;
   --postWidth: min(450px, 100vw);
   --arrowSize: 10px;
   --igGradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #b023cc 75%, #4418bc 100%);
