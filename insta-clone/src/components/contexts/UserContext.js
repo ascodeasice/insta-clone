@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { getUser, getUserData, userIsloggedIn } from '../../firebase/authentication';
+import { getUser, userIsloggedIn } from '../../firebase/authentication';
+import { getUserData } from '../../firebase/firestore';
 
 const UserContext = React.createContext();
 const FetchUserContext = React.createContext();

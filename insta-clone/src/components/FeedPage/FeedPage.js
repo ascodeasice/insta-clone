@@ -9,9 +9,7 @@ const FeedPage = () => {
       <NavBar />
       <div id="feedPage" className="page">
         <UserAccount />
-        <Post />
-        <Post />
-        <Post />
+        {/* TODO get all posts and map them */}
       </div >
     </>
   );
