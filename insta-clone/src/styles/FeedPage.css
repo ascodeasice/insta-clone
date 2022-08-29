@@ -87,12 +87,25 @@
   display: grid;
   grid-template-columns: repeat(3, min-content);
   column-gap: 15px;
+  align-items: center;
 
-  padding-left: 10px
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.commentIcon {
+  width: 27px;
+  height: 27px;
 }
 
 .iconBar>img {
   width: var(--iconHeight);
   height: var(--iconHeight);
   cursor: pointer;
+}
+
+.likeCount {
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
 }

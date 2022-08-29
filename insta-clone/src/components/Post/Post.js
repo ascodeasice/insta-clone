@@ -24,6 +24,7 @@ const Post = ({ data }) => {
         <CommentIcon />
         <SaveIcon />
       </div>
+      <p className='likeCount'>{!data.likeCount || data.likeCount === 0 ? '' : `${data.likeCount} likes`}</p>
     </div>
   )
 }

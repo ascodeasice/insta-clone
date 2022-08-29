@@ -3,6 +3,7 @@ import { db } from './firebase-config';
 import { getUser, userIsloggedIn } from './authentication';
 import { saveImage } from './storage';
 
+// NOTE noly for new posts
 const savePostData = async (file, text) => {
   if (!userIsloggedIn()) {
     return;
@@ -14,7 +15,8 @@ const savePostData = async (file, text) => {
       uid: getUser().uid,
       photoURL: '#',
       text: text,
-      timestamp: serverTimestamp()
+      timestamp: serverTimestamp(),
+      likeCount: 0
     });
 
     await saveImage(file, docRef, `posts/${getUser().uid}/${docRef.id}`);
