@@ -3,7 +3,7 @@ import { db } from './firebase-config';
 import { getUser, userIsloggedIn } from './authentication';
 import { saveImage } from './storage';
 
-// NOTE noly for new posts
+// NOTE only for new posts
 const savePostData = async (file, text) => {
   if (!userIsloggedIn()) {
     return;

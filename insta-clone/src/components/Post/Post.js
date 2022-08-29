@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import LikePostIcon from "./LikePostIcon";
 import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
+import PostText from "./PostText";
 
 const Post = ({ data }) => {
   const [postOwner, setPostOwner] = useState(null);
@@ -19,12 +20,13 @@ const Post = ({ data }) => {
     <div className="post box">
       <PostHeader postOwner={postOwner} />
       <img className='postImage' src={data.photoURL} alt='post' />
-      <div class="iconBar">
+      <div className="iconBar">
         <LikePostIcon />
         <CommentIcon />
         <SaveIcon />
       </div>
       <p className='likeCount'>{!data.likeCount || data.likeCount === 0 ? '' : `${data.likeCount} likes`}</p>
+      <PostText postOwner={postOwner} text={data.text} />
     </div>
   )
 }

@@ -57,7 +57,7 @@
   align-items: center;
   column-gap: 10px;
 
-  padding: 10px;
+  padding: 0 20px 0 10px;
 }
 
 .postUserName {
@@ -108,4 +108,25 @@
   padding-left: 10px;
   font-weight: bold;
   font-size: 0.9rem;
+}
+
+.postText {
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: break-spaces;
+  height: min-content;
+}
+
+.postText.hidden {
+  display: inline;
+}
+
+.paddingLeft {
+  padding-left: 10px;
+}
+
+.moreText {
+  display: inline;
+  color: var(--grey);
+  cursor: pointer;
 }
