@@ -18,7 +18,7 @@ const savePostData = async (file, text) => {
     });
 
     // Upload the image to Cloud Storage.
-    const filePath = `${getUser().uid}/${docRef.id}`;
+    const filePath = `posts/${getUser().uid}/${docRef.id}`;
     const newImageRef = ref(storage, filePath);
     const fileSnapshot = await uploadBytesResumable(newImageRef, file);
 
@@ -33,7 +33,6 @@ const savePostData = async (file, text) => {
   } catch (error) {
     console.error('There was an error uploading a file to Cloud Storage:', error);
   }
-
 }
 
 export { savePostData };

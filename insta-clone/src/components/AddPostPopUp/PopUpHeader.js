@@ -1,14 +1,15 @@
 import BackIcon from '../../assets/icons/back.svg';
 import { savePostData } from '../../firebase/post';
 
-const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile }) => {
+const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile, setDone, done }) => {
   const goBack = () => {
     setDisplayDiscard(true);
   }
 
-  const share = () => {
+  const share = async () => {
     setShared(true);
-    savePostData(imageFile, postText);
+    await savePostData(imageFile, postText);
+    setDone(true);
   }
 
   if (imageFile === null) {
@@ -18,7 +19,7 @@ const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile }) => {
         <div className='fullLine'></div>
       </>
     )
-  } else {
+  } else if (!done) {
     return (
       <>
         <div id='popUpHeader'>
@@ -26,6 +27,13 @@ const PopUpHeader = ({ setDisplayDiscard, setShared, postText, imageFile }) => {
           <h4 id='createPostText'>Create new post</h4>
           <p id='shareText' onClick={share}>Share</p>
         </div>
+        <div className='fullLine'></div>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <h4 id='createPostText'>Post Shared</h4>
         <div className='fullLine'></div>
       </>
     )

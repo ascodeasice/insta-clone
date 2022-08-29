@@ -172,3 +172,28 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+#loadingPopUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 550px;
+}
+
+.loader {
+  background: var(--igGradient);
+  /* Show only 10px from the border */
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #fff 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #fff 0);
+  border-radius: 50%;
+  position: fixed;
+  inset: calc(50% - 50px);
+  animation: rot 2s linear infinite;
+}
+
+@keyframes rot {
+  100% {
+    transform: rotate(360deg);
+  }
+}
