@@ -7,13 +7,14 @@ import { useState, useEffect } from "react";
 
 const FeedPage = () => {
   const [posts, setPosts] = useState([]);
+  // const [newPostShared,]
   useEffect(() => {
     const fetchPosts = async () => {
       setPosts(await getPosts());
     }
 
     fetchPosts();
-  });
+  }, []);
 
   return (
     <>
