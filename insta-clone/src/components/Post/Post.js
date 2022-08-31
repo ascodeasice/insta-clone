@@ -5,15 +5,31 @@ import LikePostIcon from "./LikePostIcon";
 import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
+import { userLikedPost } from "../../firebase/firestore";
 
 const Post = ({ data }) => {
   const [postOwner, setPostOwner] = useState(null);
+  // to decrease fetch time, calculate like count in front end
+  const [curLikeCount, setCurLikeCount] = useState(0);
+  const [liked, setLiked] = useState(false);
+
+  const getLikeCountText = () => {
+    return !curLikeCount || curLikeCount === 0 ? '' : `${curLikeCount} likes`;
+  }
+
+  const setLikeState = async () => {
+    const hasLiked = await userLikedPost(data.uid, data.postId);
+    setLiked(hasLiked);
+  }
+
+  const fetchOwner = async () => {
+    setPostOwner(await getUserData(data.uid));
+  }
 
   useEffect(() => {
-    const fetchOwner = async () => {
-      setPostOwner(await getUserData(data.uid));
-    }
     fetchOwner();
+    setLikeState();
+    setCurLikeCount(data.likeCount);
   }, []);
 
   return (
@@ -21,11 +37,12 @@ const Post = ({ data }) => {
       <PostHeader postOwner={postOwner} />
       <img className='postImage' src={data.photoURL} alt='post' />
       <div className="iconBar">
-        <LikePostIcon data={data} />
+        <LikePostIcon data={data} liked={liked} setLiked={setLiked}
+          curLikeCount={curLikeCount} setCurLikeCount={setCurLikeCount} />
         <CommentIcon />
         <SaveIcon />
       </div>
-      <p className='likeCount'>{!data.likeCount || data.likeCount === 0 ? '' : `${data.likeCount} likes`}</p>
+      <p className='likeCount'>{getLikeCountText()}</p>
       <PostText postOwner={postOwner} text={data.text} />
     </div>
   )

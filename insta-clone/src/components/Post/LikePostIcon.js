@@ -1,16 +1,15 @@
 import WhiteHeart from '../../assets/icons/whiteHeart.svg';
 import BlackHeart from '../../assets/icons/blackHeart.svg';
-import { useState } from 'react';
-import { unlikePost, likePost } from '../../firebase/firestore';
-// NOTE when liked, use black heart with css filter
+import { unlikePost, likePost, } from '../../firebase/firestore';
 
-const LikePostIcon = ({ data }) => {
-  const [liked, setLiked] = useState(false);
+const LikePostIcon = ({ data, liked, setLiked, curLikeCount, setCurLikeCount }) => {
   const handleClick = async () => {
     if (liked) {
       await unlikePost(data.uid, data.postId);
+      setCurLikeCount(curLikeCount - 1);
     } else {
       await likePost(data.uid, data.postId);
+      setCurLikeCount(curLikeCount + 1);
     }
     setLiked(!liked);
   }

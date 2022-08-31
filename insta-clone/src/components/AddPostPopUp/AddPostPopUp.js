@@ -35,8 +35,7 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
     setDoneSharing(false);
   }
 
-  // just invisible, not unmounted
-  // So need to reset states
+  // component is just invisible, not unmounted, so need to reset states
   useEffect(() => {
     resetStates();
   }, [iconIndex])

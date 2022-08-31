@@ -102,4 +102,13 @@ const unlikePost = async (uid, postId) => {
   });
 }
 
-export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost, unlikePost };
+const userLikedPost = async (uid, postId) => {
+  const docRef = await getDocs(collection(db, `users/${uid}/likedPosts`));
+  const likedPost = docRef.docs.map(doc => doc.data());
+  return likedPost.some(post => post.postId === postId);
+}
+
+export {
+  savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
+  unlikePost, userLikedPost
+};
