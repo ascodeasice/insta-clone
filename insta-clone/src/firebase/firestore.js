@@ -1,4 +1,5 @@
-import { addDoc, collection, serverTimestamp, updateDoc, getDoc, doc, setDoc, getDocs } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, updateDoc, getDoc, doc, setDoc, getDocs, deleteDoc }
+  from 'firebase/firestore';
 import { db } from './firebase-config';
 import { getUser, userIsloggedIn } from './authentication';
 import { saveImage } from './storage';
@@ -92,4 +93,13 @@ const likePost = async (uid, postId) => {
   });
 }
 
-export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost };
+const unlikePost = async (uid, postId) => {
+  await deleteDoc(doc(db, `users/${uid}/likedPosts/${postId}`));
+
+  const curLikeCount = (await getPostData(postId)).likeCount;
+  await updateDoc(doc(db, `posts/${postId}`), {
+    likeCount: curLikeCount - 1
+  });
+}
+
+export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost, unlikePost };
