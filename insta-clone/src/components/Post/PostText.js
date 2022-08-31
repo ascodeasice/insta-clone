@@ -11,6 +11,7 @@ const PostText = ({ text, postOwner }) => {
     } else if (text.length > lengthLimit) {
       return `${text.slice(0, lengthLimit)}...`;
     } else {
+      setShown(true);
       return text;
     }
   }
@@ -20,8 +21,8 @@ const PostText = ({ text, postOwner }) => {
   }
   return (
     <>
+      <p className="postUserName paddingLeft">{postOwner ? `${postOwner.userName} ` : 'loading '}</p>
       <p className={`postText ${shown ? '' : 'hidden'}`}>
-        <strong className='postUserName'>{postOwner ? `${postOwner.userName} ` : 'loading '}</strong>
         {shown ? text : hideText()}</p>
       {
         shown ? '' : <p className='moreText' onClick={showText}>more</p>

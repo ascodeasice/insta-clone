@@ -7,6 +7,7 @@ import PopUpHeader from './PopUpHeader';
 import Posting from './Posting';
 import '../../styles/AddPostPopUp.css';
 import { useEffect } from 'react';
+import { useDoneSharing } from '../contexts/DoneSharingContext';
 
 const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
   const [imageSrc, setImageSrc] = useState('#');
@@ -14,11 +15,11 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
   const [displayDiscard, setDisplayDiscard] = useState(false);
   const [shared, setShared] = useState(false);
   const [postText, setPostText] = useState('');
-  const [done, setDone] = useState(false);
+  const { doneSharing, setDoneSharing } = useDoneSharing();
 
   const handleClickBg = () => {
     setShared(false);
-    if (imageSrc === '#' || done) {
+    if (imageSrc === '#' || doneSharing) {
       setIconIndex(0);
     } else {
       setDisplayDiscard(true);
@@ -31,7 +32,7 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
     setDisplayDiscard(false);
     setShared(false);
     setPostText('');
-    setDone(false);
+    setDoneSharing(false);
   }
 
   // just invisible, not unmounted
@@ -49,10 +50,10 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
         setImageSrc={setImageSrc} setImageFile={setImageFile} />
       <div id='addPostPopUp' style={{ display: index === iconIndex ? 'block' : 'none' }}>
         <PopUpHeader imageFile={imageFile} setDisplayDiscard={setDisplayDiscard}
-          setShared={setShared} postText={postText} setDone={setDone} done={done} />
+          setShared={setShared} postText={postText} setDone={setDoneSharing} done={doneSharing} />
         {
           imageSrc === '#' ? <UploadImage setImageSrc={setImageSrc} setImageFile={setImageFile} />
-            : shared ? <Posting done={done} />
+            : shared ? <Posting done={doneSharing} />
               : <AddCaption imageSrc={imageSrc} setPostText={setPostText} imageFile={imageFile} />
         }
       </div>

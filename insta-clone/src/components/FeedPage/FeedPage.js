@@ -4,17 +4,33 @@ import Post from '../Post/Post';
 import '../../styles/FeedPage.css';
 import { getPosts } from "../../firebase/firestore";
 import { useState, useEffect } from "react";
+import { useDoneSharing } from "../contexts/DoneSharingContext";
 
 const FeedPage = () => {
   const [posts, setPosts] = useState([]);
-  // const [newPostShared,]
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setPosts(await getPosts());
-    }
+  const { doneSharing } = useDoneSharing();
 
+  const fetchPosts = async () => {
+    setPosts(await getPosts());
+  }
+
+  const sortPostsByTime = (arr) => {
+    return arr.sort((a, b) => {
+      return a.data().timestamp && b.data().timestamp ?
+        b.data().timestamp.seconds - a.data().timestamp.seconds : true
+    })
+  }
+
+  useEffect(() => {
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    if (!doneSharing) {
+      return;
+    }
+    fetchPosts();
+  }, [doneSharing]);
 
   return (
     <>
@@ -22,7 +38,7 @@ const FeedPage = () => {
       <div id="feedPage" className="page">
         <UserAccount />
         {
-          posts.map((post, i) => {
+          sortPostsByTime(posts).map((post, i) => {
             return <Post key={i} data={post.data()} />
           })
         }
