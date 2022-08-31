@@ -72,7 +72,24 @@ const getUserData = async (uid) => {
 
 const getPosts = async () => {
   const postsSnap = await getDocs(collection(db, 'posts'));
+  console.log('getting posts')
   return postsSnap.docs;
 }
 
-export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts };
+const getPostData = async (postId) => {
+  const docRef = await getDoc(doc(db, `posts/${postId}`));
+  return docRef.data();
+}
+
+const likePost = async (uid, postId) => {
+  await setDoc(doc(db, `users/${uid}/likedPosts/${postId}`), {
+    postId: postId
+  });
+
+  const curLikeCount = (await getPostData(postId)).likeCount;
+  await updateDoc(doc(db, `posts/${postId}`), {
+    likeCount: curLikeCount + 1
+  });
+}
+
+export { savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost };

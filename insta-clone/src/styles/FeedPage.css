@@ -130,3 +130,7 @@
   color: var(--grey);
   cursor: pointer;
 }
+
+.pinkFilter {
+  filter: invert(38%) sepia(35%) saturate(3554%) hue-rotate(330deg) brightness(98%) contrast(90%);
+}

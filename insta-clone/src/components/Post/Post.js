@@ -21,7 +21,7 @@ const Post = ({ data }) => {
       <PostHeader postOwner={postOwner} />
       <img className='postImage' src={data.photoURL} alt='post' />
       <div className="iconBar">
-        <LikePostIcon />
+        <LikePostIcon data={data} />
         <CommentIcon />
         <SaveIcon />
       </div>
