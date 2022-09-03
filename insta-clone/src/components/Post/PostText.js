@@ -47,10 +47,10 @@ const PostText = ({ text, postOwner, data }) => {
 
     // show first two when first rendering
     if (showAllComments) {
-      return sortedComments.map((doc, i) => <Comment key={i} uid={doc.data().uid} text={doc.data().text}></Comment>)
+      return sortedComments.map((doc) => <Comment key={doc.data().id} postId={data.postId} commentId={doc.data().id} uid={doc.data().uid} text={doc.data().text}></Comment>)
     } else {
       return sortedComments.slice(0, 2)
-        .map((doc, i) => <Comment key={i} uid={doc.data().uid} text={doc.data().text}></Comment>);
+        .map((doc) => <Comment key={doc.data().id} postId={data.postId} commentId={doc.data().id} uid={doc.data().uid} text={doc.data().text} />);
     }
   }
 

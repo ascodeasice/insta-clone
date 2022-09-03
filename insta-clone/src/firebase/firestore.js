@@ -152,8 +152,12 @@ const editPostText = async (postId, text) => {
   });
 }
 
+const deleteComment = async (postId, commentId) => {
+  await deleteDoc(doc(db, `posts/${postId}/comments/${commentId}`));
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
-  deletePost, editPostText
+  deletePost, editPostText, deleteComment
 };

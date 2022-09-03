@@ -179,7 +179,7 @@
 
 .comment {
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content 1fr min-content;
   column-gap: 10px;
   align-items: center;
 
@@ -195,6 +195,13 @@
 
 .comment>.userName {
   font-weight: bold;
+}
+
+.comment>.moreIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 #postMorePopUp {
