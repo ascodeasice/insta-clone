@@ -1,6 +1,6 @@
 import PostHeader from "./PostHeader";
 import { getUserData, userLikedPost } from '../../firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import LikePostIcon from "./LikePostIcon";
 import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
@@ -12,6 +12,7 @@ const Post = ({ data }) => {
   // to decrease fetch time, calculate like count in front end
   const [curLikeCount, setCurLikeCount] = useState(0);
   const [liked, setLiked] = useState(false);
+  const commentInputRef = useRef(null);
 
   const getLikeCountText = () => {
     switch (curLikeCount) {
@@ -46,13 +47,13 @@ const Post = ({ data }) => {
       <div className="iconBar">
         <LikePostIcon data={data} liked={liked} setLiked={setLiked}
           curLikeCount={curLikeCount} setCurLikeCount={setCurLikeCount} />
-        <CommentIcon />
+        <CommentIcon commentInputRef={commentInputRef} />
         <SaveIcon />
       </div>
       <p className='likeCount'>{getLikeCountText()}</p>
       <PostText postOwner={postOwner} text={data.text} data={data} />
       <div className='fullLine'></div>
-      <CommentInput data={data} />
+      <CommentInput data={data} commentInputRef={commentInputRef} />
     </div>
   )
 }

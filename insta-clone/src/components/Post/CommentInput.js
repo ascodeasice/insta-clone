@@ -3,9 +3,9 @@ import { getUid } from "../../firebase/authentication";
 import { saveComment } from "../../firebase/firestore";
 import { useDoneCommenting } from "../contexts/DoneCommenting";
 
-const CommentInput = ({ data }) => {
+const CommentInput = ({ data, commentInputRef }) => {
   const [comment, setComment] = useState('');
-  const { doneCommenting, setDoneCommenting } = useDoneCommenting();
+  const { setDoneCommenting } = useDoneCommenting();
 
   const handleChange = (e) => {
     setComment(e.target.value);
@@ -25,7 +25,7 @@ const CommentInput = ({ data }) => {
   return (
     <div className="commentInputContainer">
       <input className='commentInput' placeholder="Add a comment..."
-        value={comment} onChange={handleChange} type='text' />
+        value={comment} onChange={handleChange} type='text' ref={commentInputRef} />
       <p onClick={postComment} className={getPostClassName()}>Post</p>
     </div>
   )

@@ -110,6 +110,10 @@
   cursor: pointer;
 }
 
+.iconBar>img:not(.pinkFilter):hover {
+  opacity: 0.5;
+}
+
 .likeCount {
   padding-left: 10px;
   font-weight: bold;

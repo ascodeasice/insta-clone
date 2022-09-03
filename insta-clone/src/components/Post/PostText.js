@@ -81,7 +81,7 @@ const PostText = ({ text, postOwner, data }) => {
         shown ? '' : <p className='moreText' onClick={showText}>more</p>
       }
       {
-        showAllComments || comments.length === 0 ? '' :
+        showAllComments || comments.length <= 2 ? '' :
           <p className="moreText paddingLeft" onClick={showComments}>View all {comments.length} comments</p>
       }
       {
