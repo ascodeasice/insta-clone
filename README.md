@@ -4,6 +4,7 @@ A clone of Instagram app, having its main features, including user authenticatio
 - Using react framework
 - Using firebase for backend
 - Using testing library for testing
+- Use date-fns for calculating time
 # Result
 ## Login page
 ![login page](#)

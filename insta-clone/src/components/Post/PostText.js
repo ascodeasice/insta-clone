@@ -1,6 +1,9 @@
 import { useState } from "react";
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+import fromUnixTime from 'date-fns/fromUnixTime';
+import { capitalize } from '../../functions/format';
 
-const PostText = ({ text, postOwner }) => {
+const PostText = ({ text, postOwner, data }) => {
   const [shown, setShown] = useState(false);
   const lengthLimit = 20;
 
@@ -16,6 +19,11 @@ const PostText = ({ text, postOwner }) => {
     }
   }
 
+  const formatTimeFromNow = () => {
+    const str = formatDistanceToNowStrict(fromUnixTime(data.timestamp.seconds), { addSuffix: true });
+    return capitalize(str);
+  }
+
   const showText = () => {
     setShown(true);
   }
@@ -27,6 +35,7 @@ const PostText = ({ text, postOwner }) => {
       {
         shown ? '' : <p className='moreText' onClick={showText}>more</p>
       }
+      <p className='paddingLeft postTime grey'>{formatTimeFromNow()}</p>
     </>
   );
 }

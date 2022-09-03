@@ -43,7 +43,7 @@ const Post = ({ data }) => {
         <SaveIcon />
       </div>
       <p className='likeCount'>{getLikeCountText()}</p>
-      <PostText postOwner={postOwner} text={data.text} />
+      <PostText postOwner={postOwner} text={data.text} data={data} />
     </div>
   )
 }

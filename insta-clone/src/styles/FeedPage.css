@@ -121,6 +121,7 @@
   white-space: break-spaces;
   height: min-content;
   margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .postText.hidden {
@@ -139,4 +140,9 @@
 
 .pinkFilter {
   filter: invert(38%) sepia(35%) saturate(3554%) hue-rotate(330deg) brightness(98%) contrast(90%);
+}
+
+.postTime {
+  font-size: 0.8rem;
+  margin-top: 10px;
 }
