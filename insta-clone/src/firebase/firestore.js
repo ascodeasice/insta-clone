@@ -2,7 +2,7 @@ import { addDoc, collection, serverTimestamp, updateDoc, getDoc, doc, setDoc, ge
   from 'firebase/firestore';
 import { db } from './firebase-config';
 import { getUser, userIsloggedIn } from './authentication';
-import { saveImage } from './storage';
+import { saveImage, deleteImage } from './storage';
 
 // NOTE only for new posts
 const savePostData = async (file, text) => {
@@ -143,6 +143,7 @@ const deletePost = async (postId) => {
   const uid = postData.uid;
   await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
   await deleteDoc(doc(db, `posts/${postId}`));
+  await deleteImage(uid, postId);
 }
 
 export {

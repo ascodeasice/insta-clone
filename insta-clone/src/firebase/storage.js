@@ -1,6 +1,6 @@
 import { updateDoc } from 'firebase/firestore';
 import { storage } from './firebase-config';
-import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage'
+import { uploadBytesResumable, getDownloadURL, ref, deleteObject } from 'firebase/storage'
 
 const saveImage = async (file, docRef, storagePath) => {
   // Upload the image to Cloud Storage.
@@ -17,4 +17,9 @@ const saveImage = async (file, docRef, storagePath) => {
   });
 }
 
-export { saveImage };
+const deleteImage = async (uid, postId) => {
+  const imageRef = ref(storage, `posts/${uid}/${postId}`);
+  await deleteObject(imageRef);
+}
+
+export { saveImage, deleteImage };
