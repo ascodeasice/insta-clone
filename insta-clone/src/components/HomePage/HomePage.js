@@ -6,6 +6,7 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import FeedPage from '../FeedPage/FeedPage';
 import { useEffect } from 'react';
 import { DoneSharingProvider } from '../contexts/DoneSharingContext';
+import { DoneCommentingProvider } from '../contexts/DoneCommenting';
 
 const HomePage = () => {
   // if not logged in, show SignUpPage. Else, show FeedPage
@@ -20,9 +21,11 @@ const HomePage = () => {
 
   if (userIsloggedIn()) {
     return (
-      <DoneSharingProvider>
-        <FeedPage />
-      </DoneSharingProvider>
+      <DoneCommentingProvider>
+        <DoneSharingProvider>
+          <FeedPage />
+        </DoneSharingProvider>
+      </DoneCommentingProvider>
     );
   } else {
     return <SignUpPage />

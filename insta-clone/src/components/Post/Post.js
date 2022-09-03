@@ -1,11 +1,10 @@
 import PostHeader from "./PostHeader";
-import { getUserData } from '../../firebase/firestore';
+import { getUserData, userLikedPost } from '../../firebase/firestore';
 import { useEffect, useState } from 'react';
 import LikePostIcon from "./LikePostIcon";
 import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
-import { userLikedPost } from "../../firebase/firestore";
 import CommentInput from "./CommentInput";
 
 const Post = ({ data }) => {
@@ -53,7 +52,7 @@ const Post = ({ data }) => {
       <p className='likeCount'>{getLikeCountText()}</p>
       <PostText postOwner={postOwner} text={data.text} data={data} />
       <div className='fullLine'></div>
-      <CommentInput />
+      <CommentInput data={data} />
     </div>
   )
 }

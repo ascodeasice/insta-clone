@@ -108,7 +108,23 @@ const userLikedPost = async (uid, postId) => {
   return likedPost.some(post => post.postId === postId);
 }
 
+const saveComment = async (uid, postId, text) => {
+  const docRef = await addDoc(collection(db, `posts/${postId}/comments`), {
+    uid: uid,
+    text: text,
+    timestamp: serverTimestamp()
+  });
+  await updateDoc(docRef, {
+    id: docRef.id
+  });
+}
+
+const getComments = async (postId) => {
+  const commentsSnapShot = await getDocs(collection(db, `posts/${postId}/comments`));
+  return commentsSnapShot.docs.filter(doc => doc.data().text); // make sure text exists
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
-  unlikePost, userLikedPost
+  unlikePost, userLikedPost, saveComment, getComments
 };
