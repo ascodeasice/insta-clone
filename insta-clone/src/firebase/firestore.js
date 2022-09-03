@@ -26,7 +26,7 @@ const savePostData = async (file, text) => {
       postId: docRef.id
     });
 
-    addDoc(collection(db, `users/${getUser().uid}/posts`), {
+    await setDoc(doc(db, `users/${getUser().uid}/posts/${docRef.id}`), {
       postId: docRef.id
     })
 

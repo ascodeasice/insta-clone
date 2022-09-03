@@ -5,10 +5,12 @@ import '../../styles/FeedPage.css';
 import { getPosts } from "../../firebase/firestore";
 import { useState, useEffect } from "react";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
+import { useDeletePost } from "../contexts/DeletePostContext";
 
 const FeedPage = () => {
   const [posts, setPosts] = useState([]);
   const { doneSharing } = useDoneSharing();
+  const { deletePost, setDeletePost } = useDeletePost();
 
   const fetchPosts = async () => {
     setPosts(await getPosts());
@@ -26,11 +28,12 @@ const FeedPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!doneSharing) {
+    if (!doneSharing && !deletePost) {
       return;
     }
     fetchPosts();
-  }, [doneSharing]);
+    setDeletePost(false);
+  }, [doneSharing, deletePost]);
 
   return (
     <>

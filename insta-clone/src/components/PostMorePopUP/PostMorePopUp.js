@@ -1,13 +1,17 @@
 import { deletePost } from "../../firebase/firestore";
 import { getUid } from "../../firebase/authentication";
+import { useDeletePost } from "../contexts/DeletePostContext";
 
 const PostMorePopUp = ({ display, setDisplayPopUp, data }) => {
+  const { setDeletePost } = useDeletePost();
+
   const cancelPopUp = () => {
     setDisplayPopUp(false);
   }
 
-  const handleDelete = () => {
-    deletePost(data.postId);
+  const handleDelete = async () => {
+    await deletePost(data.postId);
+    setDeletePost(true);
     cancelPopUp();
   }
 
