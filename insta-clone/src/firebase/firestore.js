@@ -124,7 +124,21 @@ const getComments = async (postId) => {
   return commentsSnapShot.docs.filter(doc => doc.data().text); // make sure text exists
 }
 
+const savePost = async (uid, postId) => {
+  await setDoc(doc(db, `users/${uid}/savedPosts/${postId}`), {
+    postId: postId
+  });
+}
+
+const unsavePost = async (uid, postId) => {
+  await deleteDoc(doc(db, `users/${uid}/savedPosts/${postId}`));
+}
+
+const postIsSaved = async (uid, postId) => {
+  return (await docExists(`users/${uid}/savedPosts/${postId}`));
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
-  unlikePost, userLikedPost, saveComment, getComments
+  unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved
 };

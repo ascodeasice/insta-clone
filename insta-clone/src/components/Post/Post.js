@@ -48,7 +48,7 @@ const Post = ({ data }) => {
         <LikePostIcon data={data} liked={liked} setLiked={setLiked}
           curLikeCount={curLikeCount} setCurLikeCount={setCurLikeCount} />
         <CommentIcon commentInputRef={commentInputRef} />
-        <SaveIcon />
+        <SaveIcon data={data} />
       </div>
       <p className='likeCount'>{getLikeCountText()}</p>
       <PostText postOwner={postOwner} text={data.text} data={data} />
