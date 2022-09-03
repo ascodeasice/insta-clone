@@ -9,6 +9,9 @@ const getUser = () => {
 
 const googleSignIn = async () => {
   const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
   await signInWithPopup(getAuth(app), provider);
 }
 

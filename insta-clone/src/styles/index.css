@@ -52,3 +52,19 @@ a {
 .smallText {
   font-size: 0.6rem;
 }
+
+.popUpMenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  text-align: center;
+  height: fit-content;
+}
+
+.popUpMenu>p {
+  cursor: pointer;
+}
+
+.popUpMenu>.redText {
+  color: red;
+  font-weight: bold;
+}

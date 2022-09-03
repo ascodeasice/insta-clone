@@ -138,7 +138,15 @@ const postIsSaved = async (uid, postId) => {
   return (await docExists(`users/${uid}/savedPosts/${postId}`));
 }
 
+const deletePost = async (postId) => {
+  const postData = await getPostData(postId);
+  const uid = postData.uid;
+  await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
+  await deleteDoc(doc(db, `posts/${postId}`));
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
-  unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved
+  unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
+  deletePost
 };

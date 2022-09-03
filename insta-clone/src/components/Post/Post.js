@@ -6,6 +6,7 @@ import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
 import CommentInput from "./CommentInput";
+import PostMorePopUp from "../PostMorePopUP/PostMorePopUp";
 
 const Post = ({ data }) => {
   const [postOwner, setPostOwner] = useState(null);
@@ -13,6 +14,7 @@ const Post = ({ data }) => {
   const [curLikeCount, setCurLikeCount] = useState(0);
   const [liked, setLiked] = useState(false);
   const commentInputRef = useRef(null);
+  const [displayPopUp, setDisplayPopUp] = useState(false);
 
   const getLikeCountText = () => {
     switch (curLikeCount) {
@@ -42,7 +44,8 @@ const Post = ({ data }) => {
 
   return (
     <div className="post box">
-      <PostHeader postOwner={postOwner} />
+      <PostMorePopUp display={displayPopUp} setDisplayPopUp={setDisplayPopUp} data={data} />
+      <PostHeader postOwner={postOwner} setDisplayPopUp={setDisplayPopUp} />
       <img className='postImage' src={data.photoURL} alt='post' />
       <div className="iconBar">
         <LikePostIcon data={data} liked={liked} setLiked={setLiked}
