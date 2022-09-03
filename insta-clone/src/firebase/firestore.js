@@ -74,7 +74,7 @@ const getUserData = async (uid) => {
 const getPosts = async () => {
   const postsSnap = await getDocs(collection(db, 'posts'));
   console.log('getting posts')
-  return postsSnap.docs;
+  return postsSnap.docs.filter(doc => doc.data().photoURL !== '#');
 }
 
 const getPostData = async (postId) => {

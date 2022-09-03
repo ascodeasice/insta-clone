@@ -5,7 +5,7 @@ import LikePopUp from './LikePopUp';
 const LikeIcon = ({ index, iconIndex, setIconIndex }) => {
   // need to wrap in function
   const handleClick = () => {
-    setIconIndex(index);
+    setIconIndex(iconIndex === index ? 0 : index);
   }
 
   return (

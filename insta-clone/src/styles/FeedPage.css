@@ -65,6 +65,11 @@
   cursor: pointer;
 }
 
+.postUserName.paddingLeft {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 .postHeader>img {
   width: 30px;
   height: 30px;
@@ -115,6 +120,7 @@
   padding-right: 10px;
   white-space: break-spaces;
   height: min-content;
+  margin-top: 0;
 }
 
 .postText.hidden {
