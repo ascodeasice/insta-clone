@@ -15,9 +15,10 @@
   grid-template-rows: min-content;
   column-gap: 10px;
   align-items: center;
-
   grid-row: 1/2;
   grid-column: 2/-1;
+
+  padding-left: 10px;
 }
 
 #accountPicture {
@@ -46,7 +47,7 @@
 
 .post {
   width: var(--postWidth);
-  height: var(--postHeight);
+  height: fit-content;
   border-radius: 10px;
   background-color: white;
 }
@@ -143,6 +144,31 @@
 }
 
 .postTime {
-  font-size: 0.8rem;
+  font-size: 12px;
   margin-top: 10px;
+}
+
+.commentInputContainer {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+}
+
+.commentInputContainer>input {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.commentInputContainer>p {
+  color: var(--blue);
+  font-weight: bold;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.commentInputContainer>p.disabled {
+  opacity: 0.5;
+  cursor: default;
 }

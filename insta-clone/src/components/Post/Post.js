@@ -6,6 +6,7 @@ import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
 import { userLikedPost } from "../../firebase/firestore";
+import CommentInput from "./CommentInput";
 
 const Post = ({ data }) => {
   const [postOwner, setPostOwner] = useState(null);
@@ -14,7 +15,14 @@ const Post = ({ data }) => {
   const [liked, setLiked] = useState(false);
 
   const getLikeCountText = () => {
-    return !curLikeCount || curLikeCount === 0 ? '' : `${curLikeCount} likes`;
+    switch (curLikeCount) {
+      case 0:
+        return '';
+      case 1:
+        return '1 like';
+      default:
+        return `${curLikeCount} likes`;
+    }
   }
 
   const setLikeState = async () => {
@@ -44,6 +52,8 @@ const Post = ({ data }) => {
       </div>
       <p className='likeCount'>{getLikeCountText()}</p>
       <PostText postOwner={postOwner} text={data.text} data={data} />
+      <div className='fullLine'></div>
+      <CommentInput />
     </div>
   )
 }
