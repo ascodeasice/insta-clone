@@ -146,8 +146,14 @@ const deletePost = async (postId) => {
   await deleteImage(uid, postId);
 }
 
+const editPostText = async (postId, text) => {
+  await updateDoc(doc(db, `posts/${postId}`), {
+    text: text
+  });
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
-  deletePost
+  deletePost, editPostText
 };

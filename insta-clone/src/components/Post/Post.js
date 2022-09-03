@@ -6,7 +6,7 @@ import CommentIcon from "./CommentIcon";
 import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
 import CommentInput from "./CommentInput";
-import PostMorePopUp from "../PostMorePopUP/PostMorePopUp";
+import PostMorePopUp from "../PostMorePopUp/PostMorePopUp";
 import { getUid } from "../../firebase/authentication";
 
 const Post = ({ data }) => {

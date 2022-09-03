@@ -214,3 +214,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.cancelText {
+  cursor: pointer;
+}
