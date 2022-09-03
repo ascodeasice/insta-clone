@@ -4,12 +4,14 @@ import { capitalize } from '../../functions/format';
 import { getComments } from "../../firebase/firestore";
 import Comment from "./Comment";
 import { useDoneCommenting } from "../contexts/DoneCommenting";
+import { useDoneSharing } from "../contexts/DoneSharingContext";
 
 const PostText = ({ text, postOwner, data }) => {
   const [shown, setShown] = useState(false);
   const [comments, setComments] = useState([]);
   const [showAllComments, setShowAllComments] = useState(false);
   const { doneCommenting, setDoneCommenting } = useDoneCommenting();
+  const { doneSharing } = useDoneSharing();
   const lengthLimit = 20;
 
   const hideText = () => {
@@ -42,13 +44,14 @@ const PostText = ({ text, postOwner, data }) => {
 
   const formatComments = () => {
     const sortedComments = sortCommentsByTime(comments);
+
+    // show first two when first rendering
     if (showAllComments) {
       return sortedComments.map((doc, i) => <Comment key={i} uid={doc.data().uid} text={doc.data().text}></Comment>)
     } else {
       return sortedComments.slice(0, 2)
         .map((doc, i) => <Comment key={i} uid={doc.data().uid} text={doc.data().text}></Comment>);
     }
-    // TODO if comments aren't shown, show the first two, and click to view all {count} comments
   }
 
   const fetchComments = async () => {
@@ -65,12 +68,12 @@ const PostText = ({ text, postOwner, data }) => {
   }, []);
 
   useEffect(() => {
-    if (!doneCommenting) {
+    if (!doneCommenting && !doneSharing) {
       return;
     }
     fetchComments();
     setDoneCommenting(false);
-  }, [doneCommenting]);
+  }, [doneCommenting, doneSharing]);
 
   return (
     <>

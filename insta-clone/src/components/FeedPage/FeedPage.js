@@ -38,8 +38,8 @@ const FeedPage = () => {
       <div id="feedPage" className="page">
         <UserAccount />
         {
-          sortPostsByTime(posts).map((post, i) => {
-            return <Post key={i} data={post.data()} />
+          sortPostsByTime(posts).map((post) => {
+            return <Post key={post.data().postId} data={post.data()} />
           })
         }
       </div >
