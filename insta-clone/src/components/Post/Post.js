@@ -7,6 +7,7 @@ import SaveIcon from "./SaveIcon";
 import PostText from "./PostText";
 import CommentInput from "./CommentInput";
 import PostMorePopUp from "../PostMorePopUP/PostMorePopUp";
+import { getUid } from "../../firebase/authentication";
 
 const Post = ({ data }) => {
   const [postOwner, setPostOwner] = useState(null);
@@ -28,7 +29,7 @@ const Post = ({ data }) => {
   }
 
   const setLikeState = async () => {
-    const hasLiked = await userLikedPost(data.uid, data.postId);
+    const hasLiked = await userLikedPost(getUid(), data.postId);
     setLiked(hasLiked);
   }
 
