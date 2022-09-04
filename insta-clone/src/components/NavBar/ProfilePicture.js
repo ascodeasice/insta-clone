@@ -1,6 +1,7 @@
 import { useUser } from "../contexts/UserContext";
 import ProfilePopUp from "./ProfilePopUp";
 import User from '../../assets/icons/user.svg';
+import { getUid } from "../../firebase/authentication";
 
 const ProfilePicture = ({ index, iconIndex, setIconIndex }) => {
   const user = useUser();
@@ -10,7 +11,11 @@ const ProfilePicture = ({ index, iconIndex, setIconIndex }) => {
   }
 
   const getPopUpDisplay = () => {
-    return iconIndex === index && !window.location.pathname.includes('profile');
+    // not in current user's profile page
+    return (
+      iconIndex === index &&
+      !window.location.pathname.includes('profile') && !window.location.pathname.includes(getUid())
+    );
   }
 
   return (

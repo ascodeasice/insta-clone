@@ -3,6 +3,7 @@ import { DoneSharingProvider } from '../contexts/DoneSharingContext';
 import { useEffect, useState } from 'react';
 import { getUserData } from '../../firebase/firestore';
 import Info from './Info';
+import '../../styles/ProfilePage.css';
 
 const ProfilePage = ({ tabIndex }) => {
   const [userData, setUserData] = useState(null);

@@ -1,0 +1,65 @@
+#profilePage {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+}
+
+#info {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(3, min-content);
+  column-gap: 20px;
+
+  width: var(--postWidth);
+}
+
+#userPhoto {
+  height: 120px;
+  width: 120px;
+  border-radius: 60px;
+  grid-row: 1/-1;
+  justify-self: center;
+}
+
+#info>#userName {
+  font-size: 25px;
+  font-weight: normal;
+}
+
+#editProfileButton {
+  white-space: nowrap;
+  border: 1px solid var(--lightGrey);
+  font-weight: bold;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  background-color: var(--lighterGrey);
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+#info>#fullName {
+  font-weight: bold;
+  grid-column: 2/-1;
+}
+
+#infoContainer {
+  grid-column: 2/-1;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  column-gap: 20px;
+}
+
+#infoContainer>p {
+  white-space: nowrap;
+}
+
+#info>#bio {
+  grid-column: 2/-1;
+  white-space: break-spaces;
+}
