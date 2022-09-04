@@ -12,9 +12,12 @@ const CommentInput = ({ data, commentInputRef }) => {
   }
 
   const postComment = async () => {
+    if (comment === '') {
+      return;
+    }
+    setComment('');
     await saveComment(getUid(), data.postId, comment);
     setDoneCommenting(true);
-    setComment('');
   }
 
   const getPostClassName = () => {

@@ -1,4 +1,4 @@
-import { userIsloggedIn } from '../../firebase/authentication';
+import { userIsLoggedIn } from '../../firebase/authentication';
 import { saveUserData } from '../../firebase/firestore';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { useFetchUser } from '../contexts/UserContext';
@@ -20,7 +20,7 @@ const HomePage = () => {
     });
   }, []);
 
-  if (userIsloggedIn()) {
+  if (userIsLoggedIn()) {
     return (
       <DoneCommentingProvider>
         <DoneSharingProvider>

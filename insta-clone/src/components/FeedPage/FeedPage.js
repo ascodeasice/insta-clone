@@ -37,7 +37,7 @@ const FeedPage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar defaultIconIndex={0} />
       <div id="feedPage" className="page">
         <UserAccount />
         {

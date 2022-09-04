@@ -1,6 +1,7 @@
 import WhiteHeart from '../../assets/icons/whiteHeart.svg';
 import BlackHeart from '../../assets/icons/blackHeart.svg';
 import LikePopUp from './LikePopUp';
+import { Link } from 'react-router-dom';
 
 const LikeIcon = ({ index, iconIndex, setIconIndex }) => {
   // need to wrap in function
@@ -10,8 +11,10 @@ const LikeIcon = ({ index, iconIndex, setIconIndex }) => {
 
   return (
     <div className='dropDown'>
-      <img className="navBarIcon" src={iconIndex === index ? BlackHeart : WhiteHeart} alt='likes'
-        onClick={handleClick} />
+      <Link to='/'>
+        <img className="navBarIcon" src={iconIndex === index ? BlackHeart : WhiteHeart} alt='likes'
+          onClick={handleClick} />
+      </Link>
       <LikePopUp popUpDisplay={iconIndex === index ? 'block' : 'none'} />
     </div>
   );

@@ -1,7 +1,7 @@
 import { getAuth, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { app } from './firebase-config';
 
-const userIsloggedIn = () => !!getAuth(app).currentUser;
+const userIsLoggedIn = () => !!getAuth(app).currentUser;
 
 const getUser = () => {
   return getAuth(app).currentUser;
@@ -20,10 +20,10 @@ const signOutUser = () => {
 }
 
 const getUid = () => {
-  if (!userIsloggedIn()) {
+  if (!userIsLoggedIn()) {
     return null;
   }
   return getUser().uid;
 }
 
-export { userIsloggedIn, getUser, googleSignIn, signOutUser, getUid };
+export { userIsLoggedIn, getUser, googleSignIn, signOutUser, getUid };

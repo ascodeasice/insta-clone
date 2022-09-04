@@ -2,11 +2,11 @@ import AppName from "./AppName";
 import IconContainer from "./IconContainer";
 import '../../styles/NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({ defaultIconIndex }) => {
   return (
     <div id='navBar' className="box">
       <AppName />
-      <IconContainer />
+      <IconContainer defaultIconIndex={defaultIconIndex} />
     </div>
   );
 }

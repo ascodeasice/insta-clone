@@ -1,14 +1,27 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import { UserProvider } from './components/contexts/UserContext';
-
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import { userIsLoggedIn } from './firebase/authentication';
+import { useEffect } from 'react';
 
 const App = () => {
+  const navigate = useNavigate();
+
+  // prevent user use app without logging in
+  useEffect(() => {
+    if (!userIsLoggedIn()) {
+      navigate('/');
+    }
+  }, []);
+
   return (
     <>
       <UserProvider>
         <Routes>
+          <Route path='/profile/*/saved' element={<ProfilePage tabIndex={1} />} />
+          <Route path='/profile/*' element={<ProfilePage tabIndex={0} />} />
           <Route path='/' element={<HomePage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
@@ -16,5 +29,6 @@ const App = () => {
     </>
   );
 }
+
 
 export default App;

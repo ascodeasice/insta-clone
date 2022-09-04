@@ -1,6 +1,7 @@
 import WhitePlusSquare from '../../assets/icons/whitePlusSquare.svg';
 import BlackPlusSquare from '../../assets/icons/blackPlusSquare.svg';
 import AddPostPopUp from '../AddPostPopUp/AddPostPopUp';
+import { Link } from 'react-router-dom';
 
 const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {
   const handleClick = () => {
@@ -9,8 +10,10 @@ const AddPostIcon = ({ index, iconIndex, setIconIndex }) => {
 
   return (
     <>
-      <img className="navBarIcon" src={iconIndex === index ? BlackPlusSquare : WhitePlusSquare} alt='add'
-        onClick={handleClick} />
+      <Link to='/'>
+        <img className="navBarIcon" src={iconIndex === index ? BlackPlusSquare : WhitePlusSquare}
+          alt='add' onClick={handleClick} />
+      </Link>
       <AddPostPopUp index={index} iconIndex={iconIndex} setIconIndex={setIconIndex} />
     </>
   )

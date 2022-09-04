@@ -1,12 +1,12 @@
 import { addDoc, collection, serverTimestamp, updateDoc, getDoc, doc, setDoc, getDocs, deleteDoc }
   from 'firebase/firestore';
 import { db } from './firebase-config';
-import { getUser, userIsloggedIn } from './authentication';
+import { getUser, userIsLoggedIn } from './authentication';
 import { saveImage, deleteImage } from './storage';
 
 // NOTE only for new posts
 const savePostData = async (file, text) => {
-  if (!userIsloggedIn()) {
+  if (!userIsLoggedIn()) {
     return;
   }
 
@@ -42,7 +42,7 @@ const docExists = async (path) => {
 
 // save user's data when first logged in
 const saveUserData = async () => {
-  if (!userIsloggedIn()) {
+  if (!userIsLoggedIn()) {
     return;
   }
 
