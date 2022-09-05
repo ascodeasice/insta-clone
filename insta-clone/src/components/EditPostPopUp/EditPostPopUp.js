@@ -5,7 +5,7 @@ import Posting from "../AddPostPopUp/Posting";
 import { useDoneSharing } from '../contexts/DoneSharingContext';
 import Cross from '../../assets/icons/cross.svg';
 
-const EditPostPopUp = ({ imageSrc, originText, display, setDisplay, data }) => {
+const EditPostPopUp = ({ imageSrc, originText, displayEditPopUp, setDisplay, data }) => {
   const [text, setText] = useState(originText);
   const { doneSharing, setDoneSharing } = useDoneSharing();
   const [edited, setEdited] = useState(false);
@@ -15,16 +15,18 @@ const EditPostPopUp = ({ imageSrc, originText, display, setDisplay, data }) => {
   }
 
   useEffect(() => {
-    setEdited(false);
-    setDoneSharing(false);
-  }, [display])
+    if (displayEditPopUp) {
+      setEdited(false);
+      setDoneSharing(false);
+    }
+  }, [displayEditPopUp])
 
   return (
     <>
-      <div className='darkBg' style={{ display: display ? 'block' : 'none' }} onClick={handleClickBg}>
+      <div className='darkBg' style={{ display: displayEditPopUp ? 'block' : 'none' }} onClick={handleClickBg}>
         <img className='cancelIcon' src={Cross} alt='cancel' onClick={handleClickBg} />
       </div>
-      <div id="addPostPopUp" style={{ display: display ? 'block' : 'none' }}>
+      <div id="addPostPopUp" style={{ display: displayEditPopUp ? 'block' : 'none' }}>
         <EditHeader setDisplay={setDisplay} done={doneSharing} setDone={setDoneSharing} text={text}
           data={data} setEdited={setEdited} />
         {edited ?

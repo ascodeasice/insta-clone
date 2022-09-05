@@ -18,7 +18,7 @@ body {
   padding: 0;
 }
 
-button, a, h1, h2, h3, h4, h5, h6, p, input {
+button, a, h1, h2, h3, h4, h5, h6, p, input, label, textarea {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -76,4 +76,14 @@ img {
 .popUpMenu>.redText {
   color: red;
   font-weight: bold;
+}
+
+.page {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+}
+
+.blue {
+  color: var(--blue);
 }

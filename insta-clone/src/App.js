@@ -5,6 +5,7 @@ import { UserProvider } from './components/contexts/UserContext';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { userIsLoggedIn } from './firebase/authentication';
 import { useEffect } from 'react';
+import EditProfilePage from './components/EditProfilePage/EditProfilePage';
 
 const App = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const App = () => {
     <>
       <UserProvider>
         <Routes>
+          <Route path='/account/edit' element={<EditProfilePage />} />
           <Route path='/profile/*/saved' element={<ProfilePage tabIndex={1} />} />
           <Route path='/profile/*' element={<ProfilePage tabIndex={0} />} />
           <Route path='/' element={<HomePage />} />

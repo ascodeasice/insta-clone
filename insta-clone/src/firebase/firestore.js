@@ -2,7 +2,8 @@ import { addDoc, collection, serverTimestamp, updateDoc, getDoc, doc, setDoc, ge
   from 'firebase/firestore';
 import { db } from './firebase-config';
 import { getUser, userIsLoggedIn } from './authentication';
-import { saveImage, deleteImage } from './storage';
+import { saveImage, deleteImage, fileExist } from './storage';
+import { getUid } from './authentication';
 
 // NOTE only for new posts
 const savePostData = async (file, text) => {
@@ -73,7 +74,6 @@ const getUserData = async (uid) => {
 
 const getPosts = async () => {
   const postsSnap = await getDocs(collection(db, 'posts'));
-  console.log('getting posts')
   return postsSnap.docs.filter(doc => doc.data().photoURL !== '#');
 }
 
@@ -143,7 +143,7 @@ const deletePost = async (postId) => {
   const uid = postData.uid;
   await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
   await deleteDoc(doc(db, `posts/${postId}`));
-  await deleteImage(uid, postId);
+  await deleteImage(`posts/${uid}/${postId}`);
 }
 
 const editPostText = async (postId, text) => {
@@ -156,8 +156,28 @@ const deleteComment = async (postId, commentId) => {
   await deleteDoc(doc(db, `posts/${postId}/comments/${commentId}`));
 }
 
+// NOTE update profilePicture?
+
+const updateProfile = async (userName, fullName, bio, photoURL) => {
+  const docRef = await updateDoc(doc(db, `users/${getUid()}`), {
+    userName: userName,
+    fullName: fullName,
+    bio: bio,
+    photoURL: photoURL
+  });
+
+  // same file with
+  if (fileExist(`users/${getUid()}`)) {
+    // delete old profile picture
+    await deleteImage(`users/${getUid()}`);
+  }
+  // upload new profile picture
+  // await saveImage(file, docRef, `users/${getUid()}`);
+  // TODO if photo doens't exist in storage, upload it
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
-  deletePost, editPostText, deleteComment
+  deletePost, editPostText, deleteComment, updateProfile
 };

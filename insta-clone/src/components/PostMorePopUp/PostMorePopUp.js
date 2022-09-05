@@ -38,7 +38,7 @@ const PostMorePopUp = ({ display, setDisplayPopUp, data }) => {
         }
         <p onClick={cancelPopUp}>Cancel</p>
       </div>
-      <EditPostPopUp imageSrc={data.photoURL} originText={data.text} display={displayEditPopUp}
+      <EditPostPopUp imageSrc={data.photoURL} originText={data.text} displayEditPopUp={displayEditPopUp}
         setDisplay={setDisplayEditPopUp} data={data} />
     </>
   );

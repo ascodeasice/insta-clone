@@ -17,9 +17,19 @@ const saveImage = async (file, docRef, storagePath) => {
   });
 }
 
-const deleteImage = async (uid, postId) => {
-  const imageRef = ref(storage, `posts/${uid}/${postId}`);
+const deleteImage = async (path) => {
+  const imageRef = ref(storage, path);
   await deleteObject(imageRef);
 }
 
-export { saveImage, deleteImage };
+const fileExist = async (path) => {
+  const fileRef = ref(storage, path);
+  try {
+    await getDownloadURL(fileRef)
+    return true
+  } catch {
+    return false;
+  }
+}
+
+export { saveImage, deleteImage, fileExist };

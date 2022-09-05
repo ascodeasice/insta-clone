@@ -1,6 +1,7 @@
 import User from '../../assets/icons/user.svg';
 import { useState, useEffect } from 'react';
 import { getPosts } from '../../firebase/firestore';
+import { Link } from 'react-router-dom';
 
 const Info = ({ userData }) => {
   const [postCount, setPostCount] = useState(0);
@@ -24,7 +25,7 @@ const Info = ({ userData }) => {
     <div id='info'>
       <img id='userPhoto' src={userData ? userData.photoURL : User} alt='user' />
       <p id='userName'>{userData ? userData.userName : 'loading...'}</p>
-      <button id='editProfileButton'>Edit Profile</button>
+      <Link to='/account/edit'><button id='editProfileButton'>Edit Profile</button></Link>
       <div id='infoContainer'>
         <p><strong>{postCount} </strong>posts</p>
         <p><strong>{followerCount} </strong>followers</p>
