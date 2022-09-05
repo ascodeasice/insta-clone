@@ -1,28 +1,28 @@
 import { useUser } from "../contexts/UserContext";
 import ProfilePopUp from "./ProfilePopUp";
 import User from '../../assets/icons/user.svg';
-import { getUid } from "../../firebase/authentication";
+import { useState, useEffect } from 'react';
 
 const ProfilePicture = ({ index, iconIndex, setIconIndex }) => {
   const user = useUser();
+  const [displayPopUp, setDisplayPopUp] = useState(false);
 
   const handleClick = () => {
     setIconIndex(index);
+    setDisplayPopUp(!displayPopUp);
   }
 
-  const getPopUpDisplay = () => {
-    // not in current user's profile page
-    return (
-      iconIndex === index &&
-      !window.location.pathname.includes('profile') && !window.location.pathname.includes(getUid())
-    );
-  }
+  useEffect(() => {
+    if (iconIndex !== index) {
+      setDisplayPopUp(false);
+    }
+  }, [iconIndex]);
 
   return (
     <div className='dropDown'>
       <img className="navBarIcon" id='profilePic' src={user ? user.photoURL : User} alt='userPhoto'
         onClick={handleClick} />
-      <ProfilePopUp popUpDisplay={getPopUpDisplay()} />
+      <ProfilePopUp popUpDisplay={displayPopUp} />
     </div>
   );
 }
