@@ -22,7 +22,7 @@ const ProfilePicture = ({ index, iconIndex, setIconIndex }) => {
     <div className='dropDown'>
       <img className="navBarIcon" id='profilePic' src={user ? user.photoURL : User} alt='userPhoto'
         onClick={handleClick} />
-      <ProfilePopUp popUpDisplay={displayPopUp} />
+      <ProfilePopUp displayPopUp={displayPopUp} setDisplayPopUp={setDisplayPopUp} />
     </div>
   );
 }

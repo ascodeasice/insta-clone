@@ -1,5 +1,6 @@
 import { useUser } from '../contexts/UserContext';
 import ProfilePicture from '../../assets/icons/user.svg';
+import { editProfile, editProfilePicture } from '../../firebase/firestore';
 
 const EditForm = () => {
   const user = useUser();

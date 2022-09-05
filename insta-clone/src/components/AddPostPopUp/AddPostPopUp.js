@@ -17,10 +17,18 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
   const [postText, setPostText] = useState('');
   const { doneSharing, setDoneSharing } = useDoneSharing();
 
+  const getDefaultIconIndex = () => {
+    if (window.location.pathname.includes('profile')) {
+      return 3;
+    } else {
+      return 0;
+    }
+  }
+
   const handleClickBg = () => {
     setShared(false);
     if (imageSrc === '#' || doneSharing) {
-      setIconIndex(0);
+      setIconIndex(getDefaultIconIndex());
     } else {
       setDisplayDiscard(true);
     }

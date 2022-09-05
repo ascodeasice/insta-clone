@@ -2,11 +2,13 @@ import User from '../../assets/icons/user.svg';
 import { useState, useEffect } from 'react';
 import { getPosts } from '../../firebase/firestore';
 import { Link } from 'react-router-dom';
+import { useDoneSharing } from '../contexts/DoneSharingContext';
 
 const Info = ({ userData }) => {
   const [postCount, setPostCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
+  const { doneSharing } = useDoneSharing();
 
   const fetchData = async () => {
     const posts = await getPosts(userData.uid);
@@ -15,11 +17,11 @@ const Info = ({ userData }) => {
   }
 
   useEffect(() => {
-    if (userData === null) {
+    if (userData === null && !doneSharing) {
       return;
     }
     fetchData();
-  }, [userData]);
+  }, [userData, doneSharing]);
 
   return (
     <div id='info'>
@@ -32,7 +34,7 @@ const Info = ({ userData }) => {
         <p><strong>{followingCount} </strong>following</p>
       </div>
       <p id='fullName'>{userData ? userData.fullName : 'loading...'}</p>
-      <p id='bio'>TODO: get bio</p>
+      <p id='bio'>{userData ? userData.bio || '' : 'loading...'}</p>
     </div>
   )
 }

@@ -158,26 +158,26 @@ const deleteComment = async (postId, commentId) => {
 
 // NOTE update profilePicture?
 
-const updateProfile = async (userName, fullName, bio, photoURL) => {
-  const docRef = await updateDoc(doc(db, `users/${getUid()}`), {
-    userName: userName,
-    fullName: fullName,
-    bio: bio,
-    photoURL: photoURL
-  });
-
-  // same file with
+const updateProfilePicture = async (file) => {
+  const docRef = await getDoc(doc(db, `users/${getUid()}`));
   if (fileExist(`users/${getUid()}`)) {
     // delete old profile picture
     await deleteImage(`users/${getUid()}`);
   }
   // upload new profile picture
-  // await saveImage(file, docRef, `users/${getUid()}`);
-  // TODO if photo doens't exist in storage, upload it
+  await saveImage(file, docRef, `profilePictures/${getUid()}`);
+}
+
+const updateProfile = async (userName, fullName, bio) => {
+  await updateDoc(doc(db, `users/${getUid()}`), {
+    userName: userName,
+    fullName: fullName,
+    bio: bio,
+  });
 }
 
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
-  deletePost, editPostText, deleteComment, updateProfile
+  deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture
 };
