@@ -5,7 +5,7 @@ import { getUserData } from '../../firebase/firestore';
 import Info from './Info';
 import '../../styles/ProfilePage.css';
 
-const ProfilePage = ({ tabIndex }) => {
+const ProfilePage = ({ tabIndex, pathname }) => {
   const [userData, setUserData] = useState(null);
 
   const fetchUser = async () => {
@@ -17,7 +17,7 @@ const ProfilePage = ({ tabIndex }) => {
   useEffect(() => {
     fetchUser();
     window.scrollTo(0, 0);
-  }, []);
+  }, [pathname]);
 
   return (
     <>
