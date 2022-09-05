@@ -31,6 +31,7 @@
   font-weight: bold;
   white-space: nowrap;
   margin: 0;
+  color: black;
 }
 
 #fullName {
@@ -65,6 +66,7 @@
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
+  color: black;
 }
 
 .postUserName.paddingLeft {
@@ -72,7 +74,7 @@
   margin-bottom: 0;
 }
 
-.postHeader>img {
+.postHeader>a>img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -187,14 +189,15 @@
   padding-left: 10px;
 }
 
-.comment>p {
+.comment>a>p, .comment>p {
   margin: 0;
   margin-top: 5px;
   overflow: auto;
   white-space: nowrap;
+  color: black;
 }
 
-.comment>.userName {
+.comment>a>.userName {
   font-weight: bold;
 }
 

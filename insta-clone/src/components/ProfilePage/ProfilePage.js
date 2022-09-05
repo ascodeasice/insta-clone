@@ -16,6 +16,7 @@ const ProfilePage = ({ tabIndex }) => {
 
   useEffect(() => {
     fetchUser();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

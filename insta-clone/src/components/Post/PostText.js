@@ -5,6 +5,7 @@ import { getComments } from "../../firebase/firestore";
 import Comment from "./Comment";
 import { useDoneCommenting } from "../contexts/DoneCommenting";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
+import { Link } from "react-router-dom";
 
 const PostText = ({ text, postOwner, data }) => {
   const [shown, setShown] = useState(false);
@@ -63,6 +64,14 @@ const PostText = ({ text, postOwner, data }) => {
     setShowAllComments(true);
   }
 
+  const getProfileLink = () => {
+    if (postOwner) {
+      return `/profile/${postOwner.uid}`;
+    } else {
+      return '/';
+    }
+  }
+
   useEffect(() => {
     fetchComments();
   }, []);
@@ -77,7 +86,9 @@ const PostText = ({ text, postOwner, data }) => {
 
   return (
     <>
-      <p className="postUserName paddingLeft">{postOwner ? `${postOwner.userName} ` : 'loading '}</p>
+      <Link to={getProfileLink()}>
+        <p className="postUserName paddingLeft">{postOwner ? `${postOwner.userName} ` : 'loading '}</p>
+      </Link>
       <p className={`postText ${shown ? '' : 'hidden'}`}>
         {shown ? text : hideText()}</p>
       {
