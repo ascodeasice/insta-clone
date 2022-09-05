@@ -64,6 +64,7 @@
 .postUserName {
   font-weight: bold;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .postUserName.paddingLeft {

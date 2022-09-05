@@ -30,6 +30,10 @@
   padding-left: 10px;
 }
 
+#editProfileForm>input:invalid {
+  border: 2px solid red;
+}
+
 #editProfileForm>textarea {
   border-radius: 2px;
   height: 40px;

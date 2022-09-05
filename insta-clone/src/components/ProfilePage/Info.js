@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getPosts } from '../../firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useDoneSharing } from '../contexts/DoneSharingContext';
+import { getUid } from '../../firebase/authentication';
 
 const Info = ({ userData }) => {
   const [postCount, setPostCount] = useState(0);
@@ -16,6 +17,14 @@ const Info = ({ userData }) => {
     // TODO get followers, get followings
   }
 
+  const isCurrentUserProfile = () => {
+    if (userData === null) {
+      return false;
+    } else {
+      return userData.uid === getUid();
+    }
+  }
+
   useEffect(() => {
     if (userData === null && !doneSharing) {
       return;
@@ -27,7 +36,11 @@ const Info = ({ userData }) => {
     <div id='info'>
       <img id='userPhoto' src={userData ? userData.photoURL : User} alt='user' />
       <p id='userName'>{userData ? userData.userName : 'loading...'}</p>
-      <Link to='/account/edit'><button id='editProfileButton'>Edit Profile</button></Link>
+      {
+        isCurrentUserProfile() ?
+          <Link to='/account/edit'><button id='editProfileButton'>Edit Profile</button></Link>
+          : ''
+      }
       <div id='infoContainer'>
         <p><strong>{postCount} </strong>posts</p>
         <p><strong>{followerCount} </strong>followers</p>
