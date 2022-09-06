@@ -3,10 +3,12 @@ import { DoneSharingProvider } from '../contexts/DoneSharingContext';
 import { useEffect, useState } from 'react';
 import { getUserData } from '../../firebase/firestore';
 import Info from './Info';
+import Tab from './Tab';
 import '../../styles/ProfilePage.css';
 
-const ProfilePage = ({ tabIndex, pathname }) => {
+const ProfilePage = ({ defaultTabIndex, pathname }) => {
   const [userData, setUserData] = useState(null);
+  const [tabIndex, setTabIndex] = useState(defaultTabIndex);
 
   const fetchUser = async () => {
     const uid = pathname.split('/')[2];
@@ -24,6 +26,8 @@ const ProfilePage = ({ tabIndex, pathname }) => {
         <NavBar defaultIconIndex={3} />
         <div id='profilePage' className="page">
           <Info userData={userData} />
+          <div className='fullLine'></div>
+          <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} />
         </div>
       </DoneSharingProvider>
     </>

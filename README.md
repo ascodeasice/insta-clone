@@ -2,8 +2,10 @@
 A clone of Instagram app, having its main features, including user authentication, posting and liking posts.
 # Details
 - Using react framework
-- Using firebase for backend
-- Use date-fns for calculating time
+- Using firebase firestore for storing documents
+- Using firebase storage for storing images
+- Using firebase authentication(google)
+- Using date-fns for calculating time
 # Result
 ## Login page
 ![login page](#)

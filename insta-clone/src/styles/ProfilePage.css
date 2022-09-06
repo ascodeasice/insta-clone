@@ -4,17 +4,18 @@
   padding-top: 20px;
 
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: min-content min-content;
   justify-content: center;
 }
 
 #info {
   display: grid;
   grid-template-columns: repeat(3, min-content);
-  grid-template-rows: repeat(3, min-content);
+  grid-template-rows: repeat(4, min-content);
   column-gap: 20px;
 
   width: var(--postWidth);
+  margin-bottom: 20px;
 }
 
 #userPhoto {
@@ -62,4 +63,40 @@
 #info>#bio {
   grid-column: 2/-1;
   white-space: break-spaces;
+}
+
+#tabContainer {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  justify-content: center;
+  column-gap: 40px;
+}
+
+.tab {
+  margin-top: 0;
+  padding: 20px;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--grey);
+  font-size: 12px;
+  white-space: nowrap;
+
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  column-gap: 10px;
+}
+
+.tab>img {
+  height: 12px;
+  width: 12px;
+}
+
+.tab.chosen {
+  border-top: 1px solid black;
+  color: black;
+}
+
+.greyFilter {
+  filter: invert(58%) sepia(0%) saturate(1257%) hue-rotate(142deg) brightness(95%) contrast(108%);
 }

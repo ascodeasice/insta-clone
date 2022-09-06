@@ -22,8 +22,8 @@ const App = () => {
       <UserProvider>
         <Routes>
           <Route path='/account/edit' element={<EditProfilePage />} />
-          <Route path='/profile/*/saved' element={<ProfilePage tabIndex={1} pathname={window.location.pathname} />} />
-          <Route path='/profile/*' element={<ProfilePage tabIndex={0} pathname={window.location.pathname} />} />
+          <Route path='/profile/*/saved' element={<ProfilePage defaultTabIndex={1} pathname={window.location.pathname} />} />
+          <Route path='/profile/*' element={<ProfilePage defaultTabIndex={0} pathname={window.location.pathname} />} />
           <Route path='/' element={<HomePage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
