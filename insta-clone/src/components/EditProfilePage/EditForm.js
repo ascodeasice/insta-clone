@@ -8,6 +8,7 @@ import { getUid } from '../../firebase/authentication';
 const EditForm = () => {
   const user = useUser();
   const fetchUser = useFetchUser();
+  const [uploadingProfilePicture, setUploadingProfilePicture] = useState(false);
   const [userName, setUserName] = useState(user ? user.userName : 'loading...');
   const [fullName, setFullName] = useState(user ? user.fullName : 'loading...');
   const [bio, setBio] = useState(user ? user.bio || '' : 'loading...');
@@ -29,12 +30,36 @@ const EditForm = () => {
     fetchUser();
   }
 
+  const handleUpload = async (e) => {
+    const curFile = e.target.files[0];
+    setUploadingProfilePicture(true);
+    await updateProfilePicture(curFile);
+    fetchUser();
+    setUploadingProfilePicture(false);
+  }
+
   return (
     <form id='editProfileForm' className='box'>
-      <img id='profilePicture' src={user ? user.photoURL : ProfilePicture} alt='user' />
+      <div id="uploadWrapper">
+        <img id='profilePicture' src={user ? user.photoURL : ProfilePicture} alt='user' />
+        {
+          uploadingProfilePicture ? ''
+            : <input id='uploadInput' type='file' accept="image/png, image/gif, image/jpeg"
+              onChange={handleUpload} />
+        }
+      </div>
       <div id='textContainer'>
         <p id='userName'>{userName}</p>
-        <p id='changeProfilePicture' className='blue'>Change profile photo</p>
+        <div id="uploadWrapper">
+          {
+            uploadingProfilePicture ? <p id='changeProfilePicture' className='blue'>Uploading...</p>
+              : <>
+                <p id='changeProfilePicture' className='blue'>Change profile photo</p>
+                <input id='uploadInput' type='file' accept="image/png, image/gif, image/jpeg"
+                  onChange={handleUpload} />
+              </>
+          }
+        </div>
       </div>
       <label htmlFor='fullNameInput'>Name</label>
       <input type='text' id='fullNameInput' className='box' value={fullName}

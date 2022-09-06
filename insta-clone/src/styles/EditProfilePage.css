@@ -42,17 +42,17 @@
   font-size: 16px;
 }
 
-#editProfileForm>#profilePicture {
+#profilePicture {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  cursor: pointer;
+  pointer-events: none;
 
   align-self: center;
-  justify-self: end;
+  justify-self: right;
 }
 
-#textContainer>p {
+#textContainer>div>p, #textContainer>p {
   margin: 0;
 }
 
@@ -61,10 +61,10 @@
   font-size: 20px;
 }
 
-#textContainer>#changeProfilePicture {
+#textContainer>div>#changeProfilePicture {
   font-size: 14px;
   font-weight: bold;
-  cursor: pointer;
+  pointer-events: none;
 }
 
 #editProfileForm>#bioLabel {
@@ -82,4 +82,21 @@
   cursor: pointer;
 
   grid-column: 2/-1;
+}
+
+#editProfileForm>#uploadWrapper {
+  display: inline-block;
+  position: relative;
+  justify-self: right;
+}
+
+#uploadInput {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  cursor: pointer;
 }

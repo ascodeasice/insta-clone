@@ -9,7 +9,6 @@ const ProfilePage = ({ tabIndex, pathname }) => {
   const [userData, setUserData] = useState(null);
 
   const fetchUser = async () => {
-    const pathname = window.location.pathname;
     const uid = pathname.split('/')[2];
     setUserData(await getUserData(uid));
   }

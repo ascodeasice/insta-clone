@@ -12,7 +12,7 @@ const UserAccount = () => {
         <p id='userName'>{user.userName || user.displayName || 'none'}</p>
         <p id='fullName'>{user.fullName || user.displayName || 'none'}</p>
       </div>
-      <p id='signOut' onClick={signOutUser}>Sign Out</p>
+      <p id='signOut' onClick={signOutUser}>Switch</p>
     </div >
   );
 }

@@ -159,10 +159,10 @@ const deleteComment = async (postId, commentId) => {
 // NOTE update profilePicture?
 
 const updateProfilePicture = async (file) => {
-  const docRef = await getDoc(doc(db, `users/${getUid()}`));
-  if (fileExist(`users/${getUid()}`)) {
+  const docRef = doc(db, `users/${getUid()}`);
+  if (await fileExist(`profilePictures/${getUid()}`)) {
     // delete old profile picture
-    await deleteImage(`users/${getUid()}`);
+    await deleteImage(`profilePictures/${getUid()}`);
   }
   // upload new profile picture
   await saveImage(file, docRef, `profilePictures/${getUid()}`);

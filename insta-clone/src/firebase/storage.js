@@ -25,7 +25,7 @@ const deleteImage = async (path) => {
 const fileExist = async (path) => {
   const fileRef = ref(storage, path);
   try {
-    await getDownloadURL(fileRef)
+    await getDownloadURL(fileRef);
     return true
   } catch {
     return false;
