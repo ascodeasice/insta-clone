@@ -176,8 +176,17 @@ const updateProfile = async (userName, fullName, bio) => {
   });
 }
 
+const getUserPosts = async (uid) => {
+  const postsSnap = await getDocs(collection(db, `users/${uid}/posts`));
+  return (
+    postsSnap.docs
+      .filter(doc => doc.data().photoURL !== '#')
+  );
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
-  deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture
+  deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
+  getPostData
 };

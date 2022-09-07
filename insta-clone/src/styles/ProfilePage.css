@@ -1,10 +1,16 @@
+:root {
+  --profileWidth: max(60vw, var(--postWidth));
+  --postPictureGap: 20px;
+  --postPictureSize: calc((var(--profileWidth) - 2 * var(--postPictureGap))/ 3);
+}
+
 #profilePage {
   background-color: var(--lighterGrey);
   margin-top: calc(var(--navBarHeight) + 2px);
   padding-top: 20px;
 
   display: grid;
-  grid-template-rows: min-content min-content;
+  grid-auto-rows: min-content;
   justify-content: center;
 }
 
@@ -14,7 +20,7 @@
   grid-template-rows: repeat(4, min-content);
   column-gap: 20px;
 
-  width: var(--postWidth);
+  width: var(--profileWidth);
   margin-bottom: 20px;
 }
 
@@ -70,6 +76,8 @@
   grid-template-columns: repeat(2, min-content);
   justify-content: center;
   column-gap: 40px;
+
+  height: fit-content;
 }
 
 .tab {
@@ -99,4 +107,19 @@
 
 .greyFilter {
   filter: invert(58%) sepia(0%) saturate(1257%) hue-rotate(142deg) brightness(95%) contrast(108%);
+}
+
+#posts {
+  width: var(--profileWidth);
+  row-gap: var(--postPictureGap);
+  column-gap: var(--postPictureGap);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--postPictureSize));
+  grid-template-rows: repeat(auto-fill, var(--postPictureSize));
+}
+
+#posts>img {
+  width: var(--postPictureSize);
+  height: var(--postPictureSize);
 }

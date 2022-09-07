@@ -1,6 +1,6 @@
 import User from '../../assets/icons/user.svg';
 import { useState, useEffect } from 'react';
-import { getPosts } from '../../firebase/firestore';
+import { getUserPosts } from '../../firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useDoneSharing } from '../contexts/DoneSharingContext';
 import { getUid } from '../../firebase/authentication';
@@ -12,7 +12,7 @@ const Info = ({ userData }) => {
   const { doneSharing } = useDoneSharing();
 
   const fetchData = async () => {
-    const posts = await getPosts(userData.uid);
+    const posts = await getUserPosts(userData.uid);
     setPostCount(posts.length);
     // TODO get followers, get followings
   }
