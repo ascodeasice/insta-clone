@@ -141,9 +141,14 @@ const postIsSaved = async (uid, postId) => {
 const deletePost = async (postId) => {
   const postData = await getPostData(postId);
   const uid = postData.uid;
+  const comments = (await getDocs(collection(db, `posts/${postId}/comments`))).docs;
+
   await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
   await deleteDoc(doc(db, `posts/${postId}`));
   await deleteImage(`posts/${uid}/${postId}`);
+  for (let comment of comments) {
+    await deleteComment(postId, comment.data().id);
+  }
 }
 
 const editPostText = async (postId, text) => {

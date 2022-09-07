@@ -12,7 +12,13 @@ const ProfilePage = ({ defaultTabIndex, pathname }) => {
   const [tabIndex, setTabIndex] = useState(defaultTabIndex);
 
   const fetchUser = async () => {
-    const uid = pathname.split('/')[2];
+    let uid = 'none';
+    setTabIndex(defaultTabIndex);
+    if (defaultTabIndex === 0) {
+      uid = pathname.split('/')[2];
+    } else {
+      uid = pathname.split('/')[3];
+    }
     setUserData(await getUserData(uid));
   }
 

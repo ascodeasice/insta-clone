@@ -16,7 +16,7 @@ const ProfilePopUp = ({ displayPopUp, setDisplayPopUp }) => {
           <img src={Profile} alt='' />
           <p className='smallText'>Profile</p>
         </Link>
-        <Link to={`/profile/${getUid()}/saved`} onClick={hidePopUp}>
+        <Link to={`/profile/saved/${getUid()}`} onClick={hidePopUp}>
           <img src={BookMark} alt='' />
           <p className='smallText'>Saved</p>
         </Link>

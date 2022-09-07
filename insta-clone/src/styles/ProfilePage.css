@@ -122,4 +122,5 @@
 #posts>img {
   width: var(--postPictureSize);
   height: var(--postPictureSize);
+  cursor: pointer;
 }
