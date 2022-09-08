@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { getUserPosts, getPostData } from "../../firebase/firestore";
+import { getSavedPosts, getPostData } from "../../firebase/firestore";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
 
-const Posts = ({ userData }) => {
-  const [posts, setPosts] = useState(null);
+const SavedPosts = ({ userData }) => {
+  const [savedPosts, setSavedPosts] = useState(null);
   const { doneSharing } = useDoneSharing();
 
   const fetchPosts = async () => {
-    const userPostIds = (await getUserPosts(userData.uid)).map(doc => doc.data().postId);
+    const userPostIds = (await getSavedPosts(userData.uid)).map(doc => doc.data().postId);
     const userPosts = [];
 
     // NOTE for-each loop can't perform async,await
@@ -17,7 +17,7 @@ const Posts = ({ userData }) => {
 
     const sortedPosts = userPosts.sort((a, b) => b.timestamp - a.timestamp);
 
-    setPosts(sortedPosts);
+    setSavedPosts(sortedPosts);
   }
 
   useEffect(() => {
@@ -27,17 +27,18 @@ const Posts = ({ userData }) => {
     fetchPosts();
   }, [userData, doneSharing]);
 
+
   return (
-    <div className='posts'>
+    <div className="posts">
       {
-        posts === null ? <p>Loading...</p>
-          : posts.length === 0 ? <p>TODO add something</p>
-            : posts.map((post) => {
+        savedPosts === null ? <p>Loading...</p>
+          : savedPosts.length === 0 ? <p>TODO add </p>
+            : savedPosts.map((post) => {
               return <img key={post.postId} src={post.photoURL} alt='post' />
             })
       }
     </div>
-  )
+  );
 }
 
-export default Posts;
+export default SavedPosts;

@@ -19,6 +19,7 @@
   grid-template-columns: repeat(3, min-content);
   grid-template-rows: repeat(4, min-content);
   column-gap: 20px;
+  justify-content: center;
 
   width: var(--profileWidth);
   margin-bottom: 20px;
@@ -64,6 +65,7 @@
 
 #infoContainer>p {
   white-space: nowrap;
+  font-size: 16px;
 }
 
 #info>#bio {
@@ -109,7 +111,7 @@
   filter: invert(58%) sepia(0%) saturate(1257%) hue-rotate(142deg) brightness(95%) contrast(108%);
 }
 
-#posts {
+.posts {
   width: var(--profileWidth);
   row-gap: var(--postPictureGap);
   column-gap: var(--postPictureGap);
@@ -119,7 +121,7 @@
   grid-template-rows: repeat(auto-fill, var(--postPictureSize));
 }
 
-#posts>img {
+.posts>img {
   width: var(--postPictureSize);
   height: var(--postPictureSize);
   cursor: pointer;

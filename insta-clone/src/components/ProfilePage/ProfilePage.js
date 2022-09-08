@@ -5,6 +5,7 @@ import { getUserData } from '../../firebase/firestore';
 import Info from './Info';
 import Tab from './Tab';
 import Posts from './Posts';
+import SavedPosts from './SavedPosts';
 import '../../styles/ProfilePage.css';
 
 const ProfilePage = ({ defaultTabIndex, pathname }) => {
@@ -34,9 +35,10 @@ const ProfilePage = ({ defaultTabIndex, pathname }) => {
         <div id='profilePage' className="page">
           <Info userData={userData} />
           <div className='fullLine'></div>
-          <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} userData={userData} />
+          <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} />
           {
-            userData !== null && tabIndex === 0 ? <Posts userData={userData} /> : ''
+            userData !== null && tabIndex === 0 ? <Posts userData={userData} />
+              : <SavedPosts userData={userData} />
           }
         </div>
       </DoneSharingProvider>

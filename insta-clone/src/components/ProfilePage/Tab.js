@@ -1,8 +1,7 @@
 import Grid from '../../assets/icons/grid.svg';
 import BookMark from '../../assets/icons/bookmark.svg';
-import Posts from './Posts';
 
-const Tab = ({ tabIndex, setTabIndex, userData }) => {
+const Tab = ({ tabIndex, setTabIndex }) => {
   // if chosen, border-top will be 1px solid black
 
   const getTabClassName = (index) => `tab ${tabIndex === index ? 'chosen' : ''}`;

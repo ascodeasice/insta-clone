@@ -146,6 +146,8 @@ const deletePost = async (postId) => {
   await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
   await deleteDoc(doc(db, `posts/${postId}`));
   await deleteImage(`posts/${uid}/${postId}`);
+
+  // NOTE await don't work in foreach loop
   for (let comment of comments) {
     await deleteComment(postId, comment.data().id);
   }
@@ -183,15 +185,17 @@ const updateProfile = async (userName, fullName, bio) => {
 
 const getUserPosts = async (uid) => {
   const postsSnap = await getDocs(collection(db, `users/${uid}/posts`));
-  return (
-    postsSnap.docs
-      .filter(doc => doc.data().photoURL !== '#')
-  );
+  return postsSnap.docs;
+}
+
+const getSavedPosts = async (uid) => {
+  const savedPosts = await getDocs(collection(db, `users/${uid}/savedPosts`));
+  return savedPosts.docs;
 }
 
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
-  getPostData
+  getPostData, getSavedPosts
 };
