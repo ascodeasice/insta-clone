@@ -30,7 +30,7 @@ const Posts = ({ userData }) => {
 
   return (
     <div className='posts'>
-      <PostContainer posts={posts} />
+      <PostContainer posts={posts} emptyText={"You haven't posted anything"} />
     </div>
   )
 }

@@ -184,6 +184,11 @@
   height: 550px;
 }
 
+#loadingPopUp>h1 {
+  white-space: nowrap;
+  font-size: 25px;
+}
+
 .loader {
   background: var(--igGradient);
   /* Show only 10px from the border */

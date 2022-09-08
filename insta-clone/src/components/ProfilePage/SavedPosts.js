@@ -31,7 +31,7 @@ const SavedPosts = ({ userData }) => {
 
   return (
     <div className="posts">
-      <PostContainer posts={savedPosts} />
+      <PostContainer posts={savedPosts} emptyText="You haven't saved anything" />
     </div>
   );
 }

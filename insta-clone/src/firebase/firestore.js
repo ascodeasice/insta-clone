@@ -18,7 +18,8 @@ const savePostData = async (file, text) => {
       photoURL: '#',
       text: text,
       timestamp: serverTimestamp(),
-      likeCount: 0
+      likeCount: 0,
+      saverUidCollection: []
     });
 
     await saveImage(file, docRef, `posts/${getUser().uid}/${docRef.id}`);
@@ -128,10 +129,23 @@ const savePost = async (uid, postId) => {
   await setDoc(doc(db, `users/${uid}/savedPosts/${postId}`), {
     postId: postId
   });
+
+  const oldCollection = (await getPostData(postId)).saverUidCollection;
+
+  await updateDoc(doc(db, `posts/${postId}`), {
+    saverUidCollection: oldCollection.concat(uid)
+  });
 }
 
 const unsavePost = async (uid, postId) => {
   await deleteDoc(doc(db, `users/${uid}/savedPosts/${postId}`));
+
+  const oldCollection = (await getPostData(postId)).saverUidCollection;
+
+  await updateDoc(doc(db, `posts/${postId}`), {
+    saverUidCollection: oldCollection.filter(id => id !== uid)
+  });
+
 }
 
 const postIsSaved = async (uid, postId) => {
@@ -142,6 +156,7 @@ const deletePost = async (postId) => {
   const postData = await getPostData(postId);
   const uid = postData.uid;
   const comments = (await getDocs(collection(db, `posts/${postId}/comments`))).docs;
+  const saverUidCollection = postData.saverUidCollection;
 
   await deleteDoc(doc(db, `users/${uid}/posts/${postId}`));
   await deleteDoc(doc(db, `posts/${postId}`));
@@ -150,6 +165,11 @@ const deletePost = async (postId) => {
   // NOTE await don't work in foreach loop
   for (let comment of comments) {
     await deleteComment(postId, comment.data().id);
+  }
+
+  // make all users unsave this post
+  for (let id of saverUidCollection) {
+    unsavePost(id, postId);
   }
 }
 
@@ -189,8 +209,8 @@ const getUserPosts = async (uid) => {
 }
 
 const getSavedPosts = async (uid) => {
-  const savedPosts = await getDocs(collection(db, `users/${uid}/savedPosts`));
-  return savedPosts.docs;
+  const savedPosts = (await getDocs(collection(db, `users/${uid}/savedPosts`))).docs;
+  return savedPosts;
 }
 
 export {

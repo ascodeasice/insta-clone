@@ -26,6 +26,10 @@ const AddPostPopUp = ({ index, iconIndex, setIconIndex }) => {
   }
 
   const handleClickBg = () => {
+    if (imageSrc !== '#' && shared && !doneSharing) {
+      //don't do anything when sharing posts
+      return;
+    }
     setShared(false);
     if (imageSrc === '#' || doneSharing) {
       setIconIndex(getDefaultIconIndex());

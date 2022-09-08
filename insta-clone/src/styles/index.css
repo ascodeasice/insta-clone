@@ -87,3 +87,8 @@ img {
 .blue {
   color: var(--blue);
 }
+
+#postPage {
+  display: flex;
+  justify-content: center;
+}

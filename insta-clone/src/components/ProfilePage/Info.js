@@ -12,6 +12,9 @@ const Info = ({ userData }) => {
   const { doneSharing } = useDoneSharing();
 
   const fetchData = async () => {
+    if (userData === null) {
+      return;
+    }
     const posts = await getUserPosts(userData.uid);
     setPostCount(posts.length);
     // TODO get followers, get followings

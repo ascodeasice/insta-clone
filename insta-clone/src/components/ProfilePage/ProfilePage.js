@@ -1,5 +1,4 @@
 import NavBar from '../NavBar/NavBar';
-import { DoneSharingProvider } from '../contexts/DoneSharingContext';
 import { useEffect, useState } from 'react';
 import { getUserData } from '../../firebase/firestore';
 import Info from './Info';
@@ -30,18 +29,16 @@ const ProfilePage = ({ defaultTabIndex, pathname }) => {
 
   return (
     <>
-      <DoneSharingProvider>
-        <NavBar defaultIconIndex={3} />
-        <div id='profilePage' className="page">
-          <Info userData={userData} />
-          <div className='fullLine'></div>
-          <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} />
-          {
-            userData !== null && tabIndex === 0 ? <Posts userData={userData} />
-              : <SavedPosts userData={userData} />
-          }
-        </div>
-      </DoneSharingProvider>
+      <NavBar defaultIconIndex={3} />
+      <div id='profilePage' className="page">
+        <Info userData={userData} />
+        <div className='fullLine'></div>
+        <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} />
+        {
+          userData !== null && tabIndex === 0 ? <Posts userData={userData} />
+            : <SavedPosts userData={userData} />
+        }
+      </div>
     </>
   );
 }

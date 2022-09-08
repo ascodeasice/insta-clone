@@ -6,6 +6,10 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 import { userIsLoggedIn } from './firebase/authentication';
 import { useEffect } from 'react';
 import EditProfilePage from './components/EditProfilePage/EditProfilePage';
+import PostPage from './components/PostPage/PostPage';
+import { DoneSharingProvider } from "./components/contexts/DoneSharingContext";
+import { DeletePostProvider } from "./components/contexts/DeletePostContext";
+import { DoneCommentingProvider } from "./components/contexts/DoneCommenting";
 
 const App = () => {
   const navigate = useNavigate();
@@ -19,15 +23,23 @@ const App = () => {
 
   return (
     <>
-      <UserProvider>
-        <Routes>
-          <Route path='/account/edit' element={<EditProfilePage />} />
-          <Route path='/profile/saved/*' element={<ProfilePage defaultTabIndex={1} pathname={window.location.pathname} />} />
-          <Route path='/profile/*' element={<ProfilePage defaultTabIndex={0} pathname={window.location.pathname} />} />
-          <Route path='/' element={<HomePage />} />
-          <Route path='/*' element={<NotFoundPage />} />
-        </Routes>
-      </UserProvider>
+      <DoneSharingProvider>
+        <DoneCommentingProvider>
+          <DeletePostProvider>
+            <UserProvider>
+              <Routes>
+                <Route path='/account/edit' element={<EditProfilePage />} />
+                <Route path='/profile/saved/*' element={<ProfilePage defaultTabIndex={1} pathname={window.location.pathname} />} />
+                <Route path='/profile/*' element={<ProfilePage defaultTabIndex={0} pathname={window.location.pathname} />} />
+                <Route path='/post/:postId' element={<PostPage />} />
+                <Route path='/' element={<HomePage />} />
+                <Route path='/*' element={<NotFoundPage />} />
+              </Routes>
+            </UserProvider>
+          </DeletePostProvider>
+        </DoneCommentingProvider >
+      </DoneSharingProvider >
+
     </>
   );
 }

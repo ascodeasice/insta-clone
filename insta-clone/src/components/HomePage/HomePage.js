@@ -5,9 +5,6 @@ import { useFetchUser } from '../contexts/UserContext';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import FeedPage from '../FeedPage/FeedPage';
 import { useEffect } from 'react';
-import { DoneSharingProvider } from '../contexts/DoneSharingContext';
-import { DoneCommentingProvider } from '../contexts/DoneCommenting';
-import { DeletePostProvider } from '../contexts/DeletePostContext';
 
 const HomePage = () => {
   // if not logged in, show SignUpPage. Else, show FeedPage
@@ -22,13 +19,7 @@ const HomePage = () => {
 
   if (userIsLoggedIn()) {
     return (
-      <DoneCommentingProvider>
-        <DoneSharingProvider>
-          <DeletePostProvider>
-            <FeedPage />
-          </DeletePostProvider>
-        </DoneSharingProvider>
-      </DoneCommentingProvider>
+      <FeedPage />
     );
   } else {
     return <SignUpPage />
