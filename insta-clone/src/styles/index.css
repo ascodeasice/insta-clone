@@ -88,6 +88,10 @@ img {
   color: var(--blue);
 }
 
+.black {
+  color: black;
+}
+
 #postPage {
   display: flex;
   justify-content: center;

@@ -3,6 +3,7 @@ import { getUid } from "../../firebase/authentication";
 import { useDeletePost } from "../contexts/DeletePostContext";
 import { useState } from "react";
 import EditPostPopUp from "../EditPostPopUp/EditPostPopUp";
+import { Link } from 'react-router-dom';
 
 const PostMorePopUp = ({ display, setDisplayPopUp, data }) => {
   const { setDeletePost } = useDeletePost();
@@ -36,6 +37,8 @@ const PostMorePopUp = ({ display, setDisplayPopUp, data }) => {
           </>
             : ''
         }
+        <p><Link className="black" to={`/post/${data.postId}`}>Go to post</Link></p>
+        <div className="fullLine"></div>
         <p onClick={cancelPopUp}>Cancel</p>
       </div>
       <EditPostPopUp imageSrc={data.photoURL} originText={data.text} displayEditPopUp={displayEditPopUp}
