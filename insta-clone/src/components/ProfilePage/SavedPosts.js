@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSavedPosts, getPostData } from "../../firebase/firestore";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
+import PostContainer from "./PostContainer";
 
 const SavedPosts = ({ userData }) => {
   const [savedPosts, setSavedPosts] = useState(null);
@@ -30,13 +31,7 @@ const SavedPosts = ({ userData }) => {
 
   return (
     <div className="posts">
-      {
-        savedPosts === null ? <p>Loading...</p>
-          : savedPosts.length === 0 ? <p>TODO add </p>
-            : savedPosts.map((post) => {
-              return <img key={post.postId} src={post.photoURL} alt='post' />
-            })
-      }
+      <PostContainer posts={savedPosts} />
     </div>
   );
 }

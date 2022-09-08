@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserPosts, getPostData } from "../../firebase/firestore";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
+import PostContainer from "./PostContainer";
 
 const Posts = ({ userData }) => {
   const [posts, setPosts] = useState(null);
@@ -29,13 +30,7 @@ const Posts = ({ userData }) => {
 
   return (
     <div className='posts'>
-      {
-        posts === null ? <p>Loading...</p>
-          : posts.length === 0 ? <p>TODO add something</p>
-            : posts.map((post) => {
-              return <img key={post.postId} src={post.photoURL} alt='post' />
-            })
-      }
+      <PostContainer posts={posts} />
     </div>
   )
 }
