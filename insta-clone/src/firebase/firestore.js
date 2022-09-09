@@ -213,16 +213,21 @@ const getSavedPosts = async (uid) => {
   return savedPosts;
 }
 
-// const saveLikePostEvent = async (uid, postId) => {
-//   const likedUid = (await getPostData(postId)).uid;
+const saveLikePostEvent = async (likerUid, postId) => {
+  const likedUid = (await getPostData(postId)).uid;
 
-//   await addDoc(doc(db, `users/${likedUid}/events`), {
-//     timestamp: serverTimestamp(),
-//     uid: uid,
-//     postId: postId,
-//     type: 'like'
-//   });
-// }
+  await setDoc(doc(db, `users/${likedUid}/posts/${postId}/likeEvents/${likerUid}`), {
+    timestamp: serverTimestamp(),
+    uid: likerUid,
+    postId: postId
+  });
+}
+
+const deleteLikePostEvent = async (likerUid, postId) => {
+  const likedUid = (await getPostData(postId)).uid;
+
+  await deleteDoc(doc(db, `users/${likedUid}/posts/${postId}/likeEvents/${likerUid}`));
+}
 
 // TODO delete like post event
 
@@ -282,5 +287,6 @@ export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
-  getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing
+  getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing,
+  saveLikePostEvent, deleteLikePostEvent
 };
