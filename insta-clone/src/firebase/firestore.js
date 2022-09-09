@@ -232,6 +232,10 @@ const saveLikePostEvent = async (likerUid, postId) => {
     postId: postId
   });
 
+  updateDoc(docRef, {
+    id: docRef.id
+  });
+
   return docRef;
 }
 
@@ -263,7 +267,7 @@ const sortEvents = (docs) => {
   return docs.sort((a, b) => b.data().timestamp - a.data().timestamp);
 }
 
-// TODO getFollowEvents and getLikePostEvents
+// TODO getFollowEvents 
 
 // const getSortedEvents = async (uid) => {
 //   const eventsSnap = await getDocs(collection(db, `users/${uid}/events`));
@@ -305,5 +309,5 @@ export {
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
   getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing,
-  saveLikePostEvent, deleteLikePostEvent
+  getAllLikePostEvents, sortEvents
 };

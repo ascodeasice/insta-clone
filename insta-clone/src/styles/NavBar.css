@@ -47,29 +47,6 @@
   top: calc(var(--iconHeight) + var(--arrowSize));
 }
 
-#likePopUp {
-  position: absolute;
-  top: calc((var(--navBarHeight) + var(--iconHeight)) / 2 + 2px);
-  right: 0;
-
-  display: none;
-  width: min(400px, 70vw);
-  height: 300px;
-  z-index: 5;
-  background-color: white;
-  box-shadow: 0 0 3px grey;
-  border-radius: 2px;
-  color: black;
-
-}
-
-#earlierText {
-  font-weight: bold;
-  padding-left: 10px;
-  color: black;
-
-}
-
 .profilePopUp {
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
