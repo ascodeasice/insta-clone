@@ -213,9 +213,74 @@ const getSavedPosts = async (uid) => {
   return savedPosts;
 }
 
+// const saveLikePostEvent = async (uid, postId) => {
+//   const likedUid = (await getPostData(postId)).uid;
+
+//   await addDoc(doc(db, `users/${likedUid}/events`), {
+//     timestamp: serverTimestamp(),
+//     uid: uid,
+//     postId: postId,
+//     type: 'like'
+//   });
+// }
+
+// TODO delete like post event
+
+// const saveFollowEvent = async (followerUid, followedUid) => {
+//   await addDoc(doc(db, `users/${followedUid}/events`), {
+//     // Not store user name, fetch name with uid in case it changes
+//     uid: followerUid,
+//     timestamp: serverTimestamp(),
+//     type: 'follow'
+//   });
+// }
+
+// TODO delete follow event
+
+const sortEvents = (docs) => {
+  return docs.sort((a, b) => b.data().timestamp - a.data().timestamp);
+}
+
+// TODO getFollowEvents and getLikePostEvents
+
+// const getSortedEvents = async (uid) => {
+//   const eventsSnap = await getDocs(collection(db, `users/${uid}/events`));
+
+//   return sortEvents(eventsSnap.docs);
+// }
+
+const follow = async (followerUid, followedUid) => {
+  await setDoc(doc(db, `users/${followedUid}/followers/${followerUid}`), {
+    uid: followerUid
+  });
+
+  await setDoc(doc(db, `users/${followerUid}/following/${followedUid}`), {
+    uid: followedUid
+  });
+}
+
+const unfollow = async (followerUid, followedUid) => {
+  await deleteDoc(doc(db, `users/${followedUid}/followers/${followerUid}`));
+  await deleteDoc(doc(db, `users/${followerUid}/following/${followedUid}`));
+}
+
+const getFollowers = async (uid) => {
+  const followersSnap = await getDocs(collection(db, `users/${uid}/followers`));
+  return followersSnap.docs;
+}
+
+const getFollowings = async (uid) => {
+  const followingSnap = await getDocs(collection(db, `users/${uid}/following`));
+  return followingSnap.docs;
+}
+
+const isFollowing = async (followerUid, followedUid) => {
+  return await docExists(`users/${followerUid}/following/${followedUid}`);
+}
+
 export {
   savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
-  getPostData, getSavedPosts
+  getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing
 };

@@ -1,6 +1,9 @@
 import User from '../../assets/icons/user.svg';
 import { useState, useEffect } from 'react';
-import { getUserPosts } from '../../firebase/firestore';
+import {
+  getUserPosts, getFollowings, getFollowers, isFollowing,
+  follow, unfollow
+} from '../../firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useDoneSharing } from '../contexts/DoneSharingContext';
 import { getUid } from '../../firebase/authentication';
@@ -10,14 +13,19 @@ const Info = ({ userData }) => {
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
   const { doneSharing } = useDoneSharing();
+  const [hasFollowed, setHasFollowed] = useState(false);
 
   const fetchData = async () => {
     if (userData === null) {
       return;
     }
     const posts = await getUserPosts(userData.uid);
+    const followState = await isFollowing(getUid(), userData.uid);
+
     setPostCount(posts.length);
-    // TODO get followers, get followings
+    setFollowerCount((await getFollowers(userData.uid)).length);
+    setFollowingCount((await getFollowings(userData.uid)).length);
+    setHasFollowed(followState);
   }
 
   const isCurrentUserProfile = () => {
@@ -26,6 +34,26 @@ const Info = ({ userData }) => {
     } else {
       return userData.uid === getUid();
     }
+  }
+
+  const handleFollow = async () => {
+    if (userData === null) {
+      return;
+    }
+    await follow(getUid(), userData.uid);
+    setHasFollowed(true);
+    // change user view here to prevent re-fetching
+    setFollowerCount(followerCount + 1);
+  }
+
+  const handleUnfollow = async () => {
+    if (userData === null) {
+      return;
+    }
+    await unfollow(getUid(), userData.uid);
+    setHasFollowed(false);
+    // change user view here to prevent re-fetching
+    setFollowerCount(followerCount - 1);
   }
 
   useEffect(() => {
@@ -42,7 +70,8 @@ const Info = ({ userData }) => {
       {
         isCurrentUserProfile() ?
           <Link to='/account/edit'><button id='editProfileButton'>Edit Profile</button></Link>
-          : ''
+          : hasFollowed ? <button className='unfollowButton' onClick={handleUnfollow}>Unfollow</button>
+            : <button className='followButton' onClick={handleFollow}>Follow</button>
       }
       <div id='infoContainer'>
         <p><strong>{postCount} </strong>posts</p>

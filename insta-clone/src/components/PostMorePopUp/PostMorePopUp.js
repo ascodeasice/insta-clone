@@ -37,8 +37,14 @@ const PostMorePopUp = ({ display, setDisplayPopUp, data }) => {
           </>
             : ''
         }
-        <p><Link className="black" to={`/post/${data.postId}`}>Go to post</Link></p>
-        <div className="fullLine"></div>
+        {
+          // don't render if in post page
+          window.location.pathname.includes('post') ? ''
+            : <>
+              <p><Link className="black" to={`/post/${data.postId}`}>Go to post</Link></p>
+              <div className="fullLine"></div>
+            </>
+        }
         <p onClick={cancelPopUp}>Cancel</p>
       </div>
       <EditPostPopUp imageSrc={data.photoURL} originText={data.text} displayEditPopUp={displayEditPopUp}

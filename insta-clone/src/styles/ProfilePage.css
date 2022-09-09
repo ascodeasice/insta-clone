@@ -173,3 +173,30 @@
   white-space: nowrap;
   text-align: center;
 }
+
+.followButton {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  white-space: nowrap;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.unfollowButton {
+  background-color: var(--lighterGrey);
+  color: black;
+  font-weight: bold;
+  border-radius: 2px;
+  white-space: nowrap;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid var(--grey);
+}
