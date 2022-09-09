@@ -83,9 +83,13 @@ const getPostData = async (postId) => {
   return docRef.data();
 }
 
+// NOTE finish save event in this function
 const likePost = async (uid, postId) => {
+  const docRef = await saveLikePostEvent(uid, postId);
+
   await setDoc(doc(db, `users/${uid}/likedPosts/${postId}`), {
-    postId: postId
+    postId: postId,
+    eventId: docRef.id
   });
 
   const curLikeCount = (await getPostData(postId)).likeCount;
@@ -94,7 +98,13 @@ const likePost = async (uid, postId) => {
   });
 }
 
+// NOTE finish delete event in this function
 const unlikePost = async (uid, postId) => {
+  // delete event
+  const likeDoc = await getDoc(doc(db, `users/${uid}/likedPosts/${postId}`));
+  const eventId = likeDoc.data().eventId;
+  await deleteLikePostEvent(postId, eventId);
+
   await deleteDoc(doc(db, `users/${uid}/likedPosts/${postId}`));
 
   const curLikeCount = (await getPostData(postId)).likeCount;
@@ -216,17 +226,24 @@ const getSavedPosts = async (uid) => {
 const saveLikePostEvent = async (likerUid, postId) => {
   const likedUid = (await getPostData(postId)).uid;
 
-  await setDoc(doc(db, `users/${likedUid}/posts/${postId}/likeEvents/${likerUid}`), {
+  const docRef = await addDoc(collection(db, `users/${likedUid}/likeEvents`), {
     timestamp: serverTimestamp(),
     uid: likerUid,
     postId: postId
   });
+
+  return docRef;
 }
 
-const deleteLikePostEvent = async (likerUid, postId) => {
+const deleteLikePostEvent = async (postId, eventId) => {
   const likedUid = (await getPostData(postId)).uid;
 
-  await deleteDoc(doc(db, `users/${likedUid}/posts/${postId}/likeEvents/${likerUid}`));
+  await deleteDoc(doc(db, `users/${likedUid}/likeEvents/${eventId}`));
+}
+
+const getAllLikePostEvents = async (likedUid) => {
+  const eventsSnap = await getDocs(collection(db, `users/${likedUid}/likeEvents`));
+  return eventsSnap.docs;
 }
 
 // TODO delete like post event
