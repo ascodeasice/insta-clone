@@ -15,9 +15,10 @@ const UserList = ({ display, setDisplay, users, heading }) => {
         </div>
         <div className='fullLine'></div>
         {
-          heading === 'Followers' ? users.map((doc) =>
-            <Follower key={doc.data().uid} uid={doc.data().uid} setDisplay={setDisplay} />)
-            : <p>following</p>
+          !users ? ''
+            : heading === 'Followers' ? users.map((doc) =>
+              <Follower key={doc.data().uid} uid={doc.data().uid} setDisplay={setDisplay} />)
+              : <p>following</p>
         }
       </div>
     </>

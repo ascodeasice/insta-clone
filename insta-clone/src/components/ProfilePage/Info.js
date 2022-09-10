@@ -26,6 +26,7 @@ const Info = ({ userData }) => {
     const followState = await isFollowing(getUid(), userData.uid);
 
     setPostCount(posts.length);
+
     setFollowers(await getFollowers(userData.uid));
     setFollowing(await getFollowings(userData.uid));
     setHasFollowed(followState);
@@ -46,7 +47,7 @@ const Info = ({ userData }) => {
     await follow(getUid(), userData.uid);
     setHasFollowed(true);
     // change user view here to prevent re-fetching
-    setFollowers(followers + 1);
+    // setFollowers(followers + 1);
   }
 
   const handleUnfollow = async () => {
@@ -56,7 +57,7 @@ const Info = ({ userData }) => {
     await unfollow(getUid(), userData.uid);
     setHasFollowed(false);
     // change user view here to prevent re-fetching
-    setFollowers(followers - 1);
+    // setFollowers(followers - 1);
   }
 
   const showFollowers = () => {
@@ -72,7 +73,7 @@ const Info = ({ userData }) => {
       return;
     }
     fetchData();
-  }, [userData, doneSharing]);
+  }, [userData, doneSharing, hasFollowed]);
 
   return (
     <div id='info'>

@@ -59,10 +59,12 @@
 .nameWrapper>a>.userName {
   color: black;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .nameWrapper>.fullName {
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .removeButton, .removedButton {

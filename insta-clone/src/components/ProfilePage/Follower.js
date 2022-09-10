@@ -41,8 +41,11 @@ const Follower = ({ uid, setDisplay }) => {
         <p className='fullName grey'>{userData ? userData.fullName : 'Loading...'}</p>
       </div>
       {
-        isFollowed ? <button className='removeButton' onClick={removeFollower}>Remove</button>
-          : <button className='removedButton' disabled>Removed</button>
+        // is user's profile
+        window.location.pathname === getUid() ?
+          isFollowed ? <button className='removeButton' onClick={removeFollower}>Remove</button>
+            : <button className='removedButton' disabled>Removed</button>
+          : ''
       }
     </div>
   )
