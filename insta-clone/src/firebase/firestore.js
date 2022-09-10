@@ -121,8 +121,11 @@ const userLikedPost = async (uid, postId) => {
 }
 
 const saveComment = async (uid, postId, text) => {
+  const postOwnerUid = (await getPostData(postId)).uid;
+
   const docRef = await addDoc(collection(db, `posts/${postId}/comments`), {
     uid: uid,
+    postOwnerUid: postOwnerUid,
     text: text,
     timestamp: serverTimestamp()
   });
@@ -196,7 +199,7 @@ const editPostText = async (postId, text) => {
 
 const deleteComment = async (postId, commentId) => {
   const commentDocRef = await getDoc(doc(db, `posts/${postId}/comments/${commentId}`));
-  await deleteCommentEvent(commentDocRef.data().uid, commentDocRef.data().eventId);
+  await deleteCommentEvent(commentDocRef.data().postOwnerUid, commentDocRef.data().eventId);
 
   await deleteDoc(doc(db, `posts/${postId}/comments/${commentId}`));
 }

@@ -1,4 +1,4 @@
-import { getUserData } from "../../firebase/firestore";
+import { getUserData, getPostData } from "../../firebase/firestore";
 import { getUid } from "../../firebase/authentication";
 import { useState, useEffect } from "react";
 import More from '../../assets/icons/more.svg';
@@ -8,10 +8,16 @@ import { Link } from "react-router-dom";
 const Comment = ({ uid, text, postId, commentId }) => {
   const [userData, setUserData] = useState({});
   const [displayPopUp, setDisplayPopUp] = useState(false);
+  const [isPostOwner, setIsPostOwner] = useState(false);
 
   const fetchUserData = async () => {
     const userDataSnap = await getUserData(uid);
     setUserData(userDataSnap)
+  }
+
+  const checkPostOwner = async () => {
+    const postData = await getPostData(postId);
+    setIsPostOwner(getUid() === postData.uid);
   }
 
   const showPopUp = () => {
@@ -24,6 +30,7 @@ const Comment = ({ uid, text, postId, commentId }) => {
 
   useEffect(() => {
     fetchUserData();
+    checkPostOwner();
   }, []);
 
   return (
@@ -36,7 +43,7 @@ const Comment = ({ uid, text, postId, commentId }) => {
 
         <p className='commentText'>{text}</p>
         {
-          uid === getUid() ? <img className="moreIcon" src={More} alt='more' onClick={showPopUp} />
+          uid === getUid() || isPostOwner ? <img className="moreIcon" src={More} alt='more' onClick={showPopUp} />
             : ''
         }
       </div>
