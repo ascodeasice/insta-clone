@@ -7,13 +7,16 @@ import {
 import { Link } from 'react-router-dom';
 import { useDoneSharing } from '../contexts/DoneSharingContext';
 import { getUid } from '../../firebase/authentication';
+import UserList from './UserList';
 
 const Info = ({ userData }) => {
   const [postCount, setPostCount] = useState(0);
-  const [followerCount, setFollowerCount] = useState(0);
-  const [followingCount, setFollowingCount] = useState(0);
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const { doneSharing } = useDoneSharing();
   const [hasFollowed, setHasFollowed] = useState(false);
+  const [displayFollowing, setDisplayFollowing] = useState(false);
+  const [displayFollowers, setDisplayFollowers] = useState(false);
 
   const fetchData = async () => {
     if (userData === null) {
@@ -23,8 +26,8 @@ const Info = ({ userData }) => {
     const followState = await isFollowing(getUid(), userData.uid);
 
     setPostCount(posts.length);
-    setFollowerCount((await getFollowers(userData.uid)).length);
-    setFollowingCount((await getFollowings(userData.uid)).length);
+    setFollowers(await getFollowers(userData.uid));
+    setFollowing(await getFollowings(userData.uid));
     setHasFollowed(followState);
   }
 
@@ -43,7 +46,7 @@ const Info = ({ userData }) => {
     await follow(getUid(), userData.uid);
     setHasFollowed(true);
     // change user view here to prevent re-fetching
-    setFollowerCount(followerCount + 1);
+    setFollowers(followers + 1);
   }
 
   const handleUnfollow = async () => {
@@ -53,7 +56,15 @@ const Info = ({ userData }) => {
     await unfollow(getUid(), userData.uid);
     setHasFollowed(false);
     // change user view here to prevent re-fetching
-    setFollowerCount(followerCount - 1);
+    setFollowers(followers - 1);
+  }
+
+  const showFollowers = () => {
+    setDisplayFollowers(true);
+  }
+
+  const showFollowing = () => {
+    setDisplayFollowing(true);
   }
 
   useEffect(() => {
@@ -75,11 +86,13 @@ const Info = ({ userData }) => {
       }
       <div id='infoContainer'>
         <p><strong>{postCount} </strong>posts</p>
-        <p><strong>{followerCount} </strong>followers</p>
-        <p><strong>{followingCount} </strong>following</p>
+        <p onClick={showFollowers} className='clickable'><strong>{followers.length} </strong>followers</p>
+        <p onClick={showFollowing} className='clickable'><strong>{following.length} </strong>following</p>
       </div>
       <p id='fullName'>{userData ? userData.fullName : 'loading...'}</p>
       <p id='bio'>{userData ? userData.bio || '' : 'loading...'}</p>
+      <UserList users={followers} display={displayFollowers} setDisplay={setDisplayFollowers} heading='Followers' />
+      <UserList users={following} display={displayFollowing} setDisplay={setDisplayFollowing} heading='Following' />
     </div>
   )
 }

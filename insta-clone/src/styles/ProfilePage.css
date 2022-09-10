@@ -200,3 +200,7 @@
   font-size: 14px;
   border: 1px solid var(--grey);
 }
+
+.clickable {
+  cursor: pointer;
+}
