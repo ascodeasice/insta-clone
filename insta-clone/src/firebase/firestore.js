@@ -249,7 +249,7 @@ const follow = async (followerUid, followedUid) => {
 
 const unfollow = async (followerUid, followedUid) => {
   const followingDocRef = await getDoc(doc(db, `users/${followerUid}/following/${followedUid}`))
-  const eventId = followingDocRef.eventId;
+  const eventId = followingDocRef.data().eventId;
 
   await deleteFollowEvent(followedUid, eventId);
   await deleteDoc(doc(db, `users/${followedUid}/followers/${followerUid}`));
