@@ -33,14 +33,14 @@
   cursor: pointer;
 }
 
-.follower {
+.follower, .following {
   display: grid;
   grid-template-columns: repeat(2, min-content) 1fr;
   column-gap: 10px;
   margin: 10px;
 }
 
-.follower>a>.profilePicture {
+.follower>a>.profilePicture, .following>a>.profilePicture {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -82,4 +82,26 @@
 
 .removedButton {
   cursor: default;
+}
+
+.following>.unfollowButton {
+  width: 80px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid var(--lightGrey);
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 14px;
+  align-self: center;
+  justify-self: end;
+  cursor: pointer;
+}
+
+.following>.followButton {
+  width: 80px;
+  height: 30px;
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  justify-self: end;
 }

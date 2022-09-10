@@ -1,12 +1,12 @@
 import User from '../../assets/icons/user.svg';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getUserData, isFollowing, unfollow } from '../../firebase/firestore';
+import { getUserData, unfollow, follow } from '../../firebase/firestore';
 import { getUid } from '../../firebase/authentication';
 
-const Follower = ({ uid, setDisplay }) => {
+const Following = ({ uid, setDisplay }) => {
   const [userData, setUserData] = useState(null);
-  const [isFollowed, setIsfollowed] = useState(true);
+  const [followState, setFollowState] = useState(true);
 
   const fetchUserData = async () => {
     setUserData(await getUserData(uid));
@@ -16,20 +16,27 @@ const Follower = ({ uid, setDisplay }) => {
     setDisplay(false);
   }
 
-  const removeFollower = async () => {
-    await unfollow(uid, getUid());
-    setIsfollowed(false);
+  const handleFollow = async () => {
+    await follow(getUid(), uid);
+    setFollowState(true);
+  }
+
+  const unfollowUser = async () => {
+    await unfollow(getUid(), uid);
+    setFollowState(false);
   }
 
   useEffect(() => {
-    if (!isFollowed) {
+    if (!followState) {
       return;
     }
     fetchUserData();
   }, []);
 
+
+
   return (
-    <div className='follower'>
+    <div className="following">
       <Link to={`/profile/${uid}`} onClick={hideUserList}>
         <img className='profilePicture' src={userData ? userData.photoURL : User} alt='user' />
       </Link>
@@ -42,12 +49,13 @@ const Follower = ({ uid, setDisplay }) => {
       {
         // is user's profile
         window.location.pathname.includes(getUid()) ?
-          isFollowed ? <button className='removeButton' onClick={removeFollower}>Remove</button>
-            : <button className='removedButton' disabled>Removed</button>
+          followState ? <button className='unfollowButton' onClick={unfollowUser}>Following</button>
+            : <button className='followButton' onClick={handleFollow}>Follow</button>
           : ''
       }
+
     </div>
   )
 }
 
-export default Follower;
+export default Following;

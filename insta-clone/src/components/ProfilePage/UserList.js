@@ -1,6 +1,7 @@
 import '../../styles/UserList.css';
 import Cross from '../../assets/icons/cross.svg';
 import Follower from './Follower';
+import Following from './Following';
 
 const UserList = ({ display, setDisplay, users, heading }) => {
   const cancel = () => { setDisplay(false) }
@@ -18,7 +19,9 @@ const UserList = ({ display, setDisplay, users, heading }) => {
           !users ? ''
             : heading === 'Followers' ? users.map((doc) =>
               <Follower key={doc.data().uid} uid={doc.data().uid} setDisplay={setDisplay} />)
-              : <p>following</p>
+              : heading === 'Following' ? users.map((doc) =>
+                <Following key={doc.data().uid} uid={doc.data().uid} setDisplay={setDisplay} />)
+                : <p>Invalid Heading</p>
         }
       </div>
     </>
