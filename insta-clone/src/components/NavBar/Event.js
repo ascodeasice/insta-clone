@@ -16,7 +16,9 @@ const Event = ({ event }) => {
     const postData = await getPostData(event.data().postId);
     setUserName(userData.userName);
     setProfilePhotoURL(userData.photoURL);
-    setPostPhotoURL(postData.photoURL);
+    if (postData) {
+      setPostPhotoURL(postData.photoURL);
+    }
   }
 
   const getPastTime = () => {
@@ -61,6 +63,26 @@ const Event = ({ event }) => {
           <p>started following you</p>
           <p className="time">{getPastTime()}</p>
         </div>
+      )
+    case 'comment':
+      return (
+        <div className="likePostEvent">
+          <Link to={`/profile/${event.data().uid}`}>
+            <img className='profilePicture' src={profilePhotoURL || User} alt='user' />
+          </Link>
+          <Link className="userName" to={`/profile/${event.data().uid}`}>
+            {userName}
+          </Link>
+          <p>{`commented:${event.data().text}`}</p>
+          <p className="time">{getPastTime()}</p>
+          {
+            postPhotoURL === '#' ? <p>Loading...</p>
+              : <Link to={`/post/${event.data().postId}`}>
+                <img src={postPhotoURL} alt='post' className='postImage' />
+              </Link>
+          }
+        </div>
+
       )
     default:
       return '';

@@ -1,10 +1,10 @@
-import { getAllEvents, sortEvents } from "../../firebase/firestore";
+import { getAllEvents, sortEvents } from "../../firebase/event";
 import { getUid } from "../../firebase/authentication";
 import { useState, useEffect } from 'react';
 import Event from "./Event";
 import '../../styles/LikePopUp.css';
 import { isToday, fromUnixTime, isThisWeek } from 'date-fns';
-
+import WhiteHeart from '../../assets/icons/whiteHeart.svg';
 
 const EventContainer = () => {
   const [earlierEvents, setEarlierEvents] = useState([]);
@@ -33,39 +33,56 @@ const EventContainer = () => {
     fetchLikePostEvents();
   }, []);
 
+  if (todayEvents.length === 0 && thisWeekEvents.length === 0 && earlierEvents.length === 0) {
+    return (
+      <div id="emptyLikePopUp">
+        <div className='roundIconWrapper'>
+          <img className="likeIcon roundBorder" src={WhiteHeart} alt='like' />
+        </div>
+        <p>Activity On Your Posts</p>
+        <p>When someone likes or comments on one of your posts, you'll see it here.</p>
+      </div>
+    )
+  } else {
+    return (
+      <>
+        {
+          todayEvents.length === 0 ? ''
+            : <>
+              <p className="popUpTitle">Today</p>
+              {
+                todayEvents.map(event => <Event key={event.data().id} event={event} />)
+              }
+            </>
+        }
+        {
+          thisWeekEvents.length === 0 ? '' : <div className="fullLine"></div>
+        }
+        {
 
-  return (
-    <>
-      {
-        todayEvents.length === 0 ? ''
-          : <>
-            <p className="popUpTitle">Today</p>
-            {
-              todayEvents.map(event => <Event key={event.data().id} event={event} />)
-            }
-          </>
-      }
-      {
-        thisWeekEvents.length === 0 ? ''
-          : <>
-            <p className='popUpTitle'>This week</p>
-            {
-              thisWeekEvents.map(event => <Event key={event.data().id} event={event} />)
-            }
-          </>
-      }
-      {
-        earlierEvents.length === 0 ? '' :
-          <>
-            <p className="popUpTitle">Earlier</p>
-            {
-              earlierEvents.map(event => <Event key={event.data().id} event={event} />)
-            }
-          </>
-      }
-
-    </>
-  )
+          thisWeekEvents.length === 0 ? ''
+            : <>
+              <p className='popUpTitle'>This week</p>
+              {
+                thisWeekEvents.map(event => <Event key={event.data().id} event={event} />)
+              }
+            </>
+        }
+        {
+          earlierEvents.length === 0 ? '' : <div className="fullLine"></div>
+        }
+        {
+          earlierEvents.length === 0 ? '' :
+            <>
+              <p className="popUpTitle">Earlier</p>
+              {
+                earlierEvents.map(event => <Event key={event.data().id} event={event} />)
+              }
+            </>
+        }
+      </>
+    )
+  }
 }
 
 export default EventContainer;
