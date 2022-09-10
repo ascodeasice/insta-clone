@@ -70,7 +70,7 @@ const Info = ({ userData }) => {
       {
         isCurrentUserProfile() ?
           <Link to='/account/edit'><button id='editProfileButton'>Edit Profile</button></Link>
-          : hasFollowed ? <button className='unfollowButton' onClick={handleUnfollow}>Unfollow</button>
+          : hasFollowed ? <button className='unfollowButton' onClick={handleUnfollow}>Following</button>
             : <button className='followButton' onClick={handleFollow}>Follow</button>
       }
       <div id='infoContainer'>

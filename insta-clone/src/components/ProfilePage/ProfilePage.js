@@ -33,7 +33,7 @@ const ProfilePage = ({ defaultTabIndex, pathname }) => {
       <div id='profilePage' className="page">
         <Info userData={userData} />
         <div className='fullLine'></div>
-        <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} />
+        <Tab tabIndex={tabIndex} setTabIndex={setTabIndex} userData={userData} />
         {
           userData !== null && tabIndex === 0 ? <Posts userData={userData} />
             : <SavedPosts userData={userData} />

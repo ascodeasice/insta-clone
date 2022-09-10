@@ -5,7 +5,7 @@ A clone of Instagram app, having its main features, including user authenticatio
 - Using firebase firestore for storing documents
 - Using firebase storage for storing images
 - Using firebase authentication(google)
-- Using date-fns for calculating time
+- Using date-fns(npm module) for calculating time
 # Result
 ## Login page
 ![login page](#)

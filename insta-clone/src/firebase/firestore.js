@@ -226,10 +226,11 @@ const getSavedPosts = async (uid) => {
 const saveLikePostEvent = async (likerUid, postId) => {
   const likedUid = (await getPostData(postId)).uid;
 
-  const docRef = await addDoc(collection(db, `users/${likedUid}/likeEvents`), {
+  const docRef = await addDoc(collection(db, `users/${likedUid}/events`), {
     timestamp: serverTimestamp(),
     uid: likerUid,
-    postId: postId
+    postId: postId,
+    type: "like"
   });
 
   updateDoc(docRef, {
@@ -242,50 +243,58 @@ const saveLikePostEvent = async (likerUid, postId) => {
 const deleteLikePostEvent = async (postId, eventId) => {
   const likedUid = (await getPostData(postId)).uid;
 
-  await deleteDoc(doc(db, `users/${likedUid}/likeEvents/${eventId}`));
+  await deleteDoc(doc(db, `users/${likedUid}/events/${eventId}`));
 }
 
-const getAllLikePostEvents = async (likedUid) => {
-  const eventsSnap = await getDocs(collection(db, `users/${likedUid}/likeEvents`));
+const getAllEvents = async (likedUid) => {
+  const eventsSnap = await getDocs(collection(db, `users/${likedUid}/events`));
   return eventsSnap.docs;
 }
 
-// TODO delete like post event
 
-// const saveFollowEvent = async (followerUid, followedUid) => {
-//   await addDoc(doc(db, `users/${followedUid}/events`), {
-//     // Not store user name, fetch name with uid in case it changes
-//     uid: followerUid,
-//     timestamp: serverTimestamp(),
-//     type: 'follow'
-//   });
-// }
+const saveFollowEvent = async (followerUid, followedUid) => {
+  const docRef = await addDoc(collection(db, `users/${followedUid}/events`), {
+    // Not store user name, fetch name with uid in case it changes
+    uid: followerUid,
+    timestamp: serverTimestamp(),
+    type: 'follow',
+  });
 
-// TODO delete follow event
+  updateDoc(docRef, {
+    id: docRef.id
+  });
+
+  return docRef;
+}
+
+const deleteFollowEvent = async (followedUid, eventId) => {
+  await deleteDoc(doc(db, `users/${followedUid}/events/${eventId}`));
+}
+
 
 const sortEvents = (docs) => {
   return docs.sort((a, b) => b.data().timestamp - a.data().timestamp);
 }
 
-// TODO getFollowEvents 
-
-// const getSortedEvents = async (uid) => {
-//   const eventsSnap = await getDocs(collection(db, `users/${uid}/events`));
-
-//   return sortEvents(eventsSnap.docs);
-// }
 
 const follow = async (followerUid, followedUid) => {
   await setDoc(doc(db, `users/${followedUid}/followers/${followerUid}`), {
     uid: followerUid
   });
 
+  const eventDocRef = await saveFollowEvent(followerUid, followedUid);
+
   await setDoc(doc(db, `users/${followerUid}/following/${followedUid}`), {
-    uid: followedUid
+    uid: followedUid,
+    eventId: eventDocRef.id
   });
 }
 
 const unfollow = async (followerUid, followedUid) => {
+  const followingDocRef = await getDoc(doc(db, `users/${followerUid}/following/${followedUid}`))
+  const eventId = followingDocRef.eventId;
+
+  await deleteFollowEvent(followedUid, eventId);
   await deleteDoc(doc(db, `users/${followedUid}/followers/${followerUid}`));
   await deleteDoc(doc(db, `users/${followerUid}/following/${followedUid}`));
 }
@@ -309,5 +318,5 @@ export {
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
   getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing,
-  getAllLikePostEvents, sortEvents
+  getAllEvents, sortEvents
 };
