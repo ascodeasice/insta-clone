@@ -85,7 +85,8 @@ const FeedPage = () => {
                 unfollowedPosts.map((post) => {
                   return <Post key={post.data().postId} data={post.data()} />
                 })
-              }          </>
+              }
+            </>
         }
       </div >
     </>

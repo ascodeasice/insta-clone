@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getUserPosts, getPostData } from "../../firebase/firestore";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
 import PostContainer from "./PostContainer";
+import EmptyPosts from "./EmptyPosts";
+import Camera from '../../assets/icons/camera.svg';
 
 const Posts = ({ userData }) => {
   const [posts, setPosts] = useState(null);
@@ -30,7 +32,12 @@ const Posts = ({ userData }) => {
 
   return (
     <div className='posts'>
-      <PostContainer posts={posts} emptyText={"This user hasn't posted anything"} />
+      {
+        posts === null ? <p>Loading...</p>
+          : posts.length === 0 ? <EmptyPosts src={Camera} heading='Share Photos'
+            text={'When you share photos, they will appear on your profile.'} />
+            : <PostContainer posts={posts} />
+      }
     </div>
   )
 }

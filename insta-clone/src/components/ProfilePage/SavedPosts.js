@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getSavedPosts, getPostData } from "../../firebase/firestore";
 import { useDoneSharing } from "../contexts/DoneSharingContext";
 import PostContainer from "./PostContainer";
+import BookMark from '../../assets/icons/bookmark.svg';
+import EmptyPosts from "./EmptyPosts";
 
 const SavedPosts = ({ userData }) => {
   const [savedPosts, setSavedPosts] = useState(null);
@@ -31,7 +33,12 @@ const SavedPosts = ({ userData }) => {
 
   return (
     <div className="posts">
-      <PostContainer posts={savedPosts} emptyText="You haven't saved anything" />
+      {
+        savedPosts === null ? <p>Loading...</p>
+          : savedPosts.length === 0 ? <EmptyPosts src={BookMark} heading='Save'
+            text={'Save photos and videos that you want to see again. \nNo one is notified, and only you can see what you\'ve saved.'} />
+            : <PostContainer posts={savedPosts} />
+      }
     </div>
   );
 }
