@@ -1,17 +1,17 @@
 {
   "hosting": {
-    "site": "instagram-clone-by-ascodeasice",
     "public": "build",
+    "site": "Instagram-clone-ascodeasice",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
-  }
+  },
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ]
 }

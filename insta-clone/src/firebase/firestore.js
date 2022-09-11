@@ -51,6 +51,7 @@ const saveUserData = async () => {
 
   const user = getUser();
   const path = `users/${user.uid}`;
+  const myUid = 'rkuWFQtMheVyu2VEVRd65a2BTat1'
 
   if (await docExists(path)) {
     return;
@@ -62,6 +63,9 @@ const saveUserData = async () => {
     fullName: user.displayName.replace(' ', '_'),
     photoURL: user.photoURL
   });
+
+  // Follow user when they first sign in
+  await follow(myUid, user.uid);
 }
 
 const userNameExist = async (name) => {
