@@ -58,8 +58,8 @@ const saveUserData = async () => {
 
   await setDoc(doc(db, path), {
     uid: user.uid,
-    userName: user.displayName,
-    fullName: user.displayName,
+    userName: user.displayName.replace(' ', '_'),
+    fullName: user.displayName.replace(' ', '_'),
     photoURL: user.photoURL
   });
 }
@@ -74,7 +74,7 @@ const getUserData = async (uid) => {
   return docSnap.data();
 }
 
-const getPosts = async () => {
+const getAllPosts = async () => {
   const postsSnap = await getDocs(collection(db, 'posts'));
   return postsSnap.docs.filter(doc => doc.data().photoURL !== '#');
 }
@@ -271,7 +271,7 @@ const isFollowing = async (followerUid, followedUid) => {
 }
 
 export {
-  savePostData, docExists, saveUserData, userNameExist, getUserData, getPosts, likePost,
+  savePostData, docExists, saveUserData, userNameExist, getUserData, getAllPosts, likePost,
   unlikePost, userLikedPost, saveComment, getComments, savePost, unsavePost, postIsSaved,
   deletePost, editPostText, deleteComment, updateProfile, updateProfilePicture, getUserPosts,
   getPostData, getSavedPosts, follow, unfollow, getFollowers, getFollowings, isFollowing,

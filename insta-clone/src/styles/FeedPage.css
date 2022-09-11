@@ -230,3 +230,8 @@
 .cancelText {
   cursor: pointer;
 }
+
+.postType {
+  font-weight: bold;
+  font-size: 16px;
+}

@@ -63,10 +63,10 @@ const EditForm = () => {
       </div>
       <label htmlFor='fullNameInput'>Name</label>
       <input type='text' id='fullNameInput' className='box' value={fullName}
-        onChange={(e) => setFullName(e.target.value)} minLength={1} required />
+        onChange={(e) => setFullName(e.target.value).replace(' ', '_')} minLength={1} required />
       <label htmlFor='userNameInput' > Username</label >
       <input type='text' id='userNameInput' className='box' value={userName}
-        onChange={(e) => setUserName(e.target.value)} minLength={1} required />
+        onChange={(e) => setUserName(e.target.value.replace(' ', '_'))} minLength={1} required />
       < label id='bioLabel' htmlFor='bio' > Bio</label >
       <textarea id='bio' className='box' value={bio}
         onChange={(e) => setBio(e.target.value)} />
