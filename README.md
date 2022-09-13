@@ -16,6 +16,10 @@ I spent about 55 hours to finish this project.
 - Using firebase storage for storing images
 - Using firebase authentication(google)
 - Using date-fns(npm module) for calculating time
+# Might-happen Feature
+- Tagging others
+- Show visual feedback when there's new event 
+- Show users liking this post
 # Result
 ## Posts
 ![post page](./insta-clone/public/results/postPage.png)

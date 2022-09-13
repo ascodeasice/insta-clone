@@ -86,9 +86,7 @@ const PostText = ({ text, postOwner, data }) => {
 
   return (
     <>
-      <Link to={getProfileLink()}>
-        <p className="postUserName paddingLeft">{postOwner ? `${postOwner.userName} ` : 'loading '}</p>
-      </Link>
+      <Link to={getProfileLink()} className="postUserName paddingLeft">{postOwner ? `${postOwner.userName} ` : 'loading '}</Link>
       <p className={`postText ${shown ? '' : 'hidden'}`}>
         {shown ? text : hideText()}</p>
       {

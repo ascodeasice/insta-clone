@@ -62,6 +62,10 @@
   padding: 0 20px 0 10px;
 }
 
+.postUserNameLink {
+  width: min-content;
+}
+
 .postUserName {
   font-weight: bold;
   cursor: pointer;
