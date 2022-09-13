@@ -17,9 +17,18 @@ I spent about 55 hours to finish this project.
 - Using firebase authentication(google)
 - Using date-fns(npm module) for calculating time
 # Might-happen Feature
-- Tagging others
+- Hashtagging others
 - Show visual feedback when there's new event 
 - Show users liking this post
+- Recommend users
+- Better feed page algorithm
+- Search for users or posts
+- Report posts
+- Report comments
+- Edit comments
+- Like comments
+- Responsive design
+- Post multiple photos/videos
 # Result
 ## Posts
 ![post page](./insta-clone/public/results/postPage.png)

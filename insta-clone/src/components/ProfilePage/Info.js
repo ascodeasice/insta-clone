@@ -46,8 +46,6 @@ const Info = ({ userData }) => {
     }
     await follow(getUid(), userData.uid);
     setHasFollowed(true);
-    // change user view here to prevent re-fetching
-    // setFollowers(followers + 1);
   }
 
   const handleUnfollow = async () => {
@@ -56,8 +54,6 @@ const Info = ({ userData }) => {
     }
     await unfollow(getUid(), userData.uid);
     setHasFollowed(false);
-    // change user view here to prevent re-fetching
-    // setFollowers(followers - 1);
   }
 
   const showFollowers = () => {
@@ -87,7 +83,9 @@ const Info = ({ userData }) => {
       }
       <div id='infoContainer'>
         <p><strong>{postCount} </strong>posts</p>
-        <p onClick={showFollowers} className='clickable'><strong>{followers.length} </strong>followers</p>
+        <p onClick={showFollowers} className='clickable'>
+          <strong>{followers.length} </strong>follower{followers.length == 1 ? '' : 's'}
+        </p>
         <p onClick={showFollowing} className='clickable'><strong>{following.length} </strong>following</p>
       </div>
       <p id='fullName'>{userData ? userData.fullName : 'loading...'}</p>
