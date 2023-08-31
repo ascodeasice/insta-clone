@@ -1,0 +1,207 @@
+.darkBg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-color: black;
+  opacity: 0.5;
+  z-index: 5;
+}
+
+.cancelIcon {
+  filter: invert(100%);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+#addPostPopUp {
+  width: min(500px, 100vw);
+  height: var(--postHeight);
+  background-color: white;
+  border-radius: 10px;
+  z-index: 10;
+  color: black;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: calc(var(--navBarHeight) + 40px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#createPostText {
+  text-align: center;
+  white-space: nowrap;
+  margin: 10px 0 10px 0;
+  color: black;
+}
+
+#uploadContainer {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-content: center;
+  height: 550px;
+  overflow: auto;
+}
+
+#uploadIcon {
+  width: 60px;
+  height: 60px;
+}
+
+#uploadText {
+  text-align: center;
+  font-weight: normal;
+}
+
+#uploadWrapper {
+  display: inline-block;
+  position: relative
+}
+
+#uploadButton {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  height: 30px;
+  width: fit-content;
+  border-radius: 2px;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+#uploadInput {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  cursor: pointer;
+}
+
+#previewImage {
+  width: var(--postWidth);
+  height: var(--postWidth);
+  justify-self: center;
+}
+
+#createPostContainer {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: min-content 1fr;
+
+  height: 550px;
+}
+
+#captionInput {
+  resize: none;
+  padding: 10px;
+}
+
+#discardPostPopUp {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  z-index: 20;
+  background-color: white;
+  width: min(400px, 100vw);
+  height: 200px;
+  text-align: center;
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-rows: 50px 50px 50px 50px;
+}
+
+#discardPostPopUp>button {
+  background-color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#discardText {
+  margin-bottom: 0;
+  font-weight: bold;
+  align-self: flex-end;
+  font-size: 1.2rem;
+}
+
+#discardBg {
+  z-index: 15;
+}
+
+#discardButton {
+  color: red;
+  font-weight: bold;
+}
+
+#cancelDiscardButton {
+  border-radius: 0 0 10px 10px;
+}
+
+#popUpHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 40px;
+  padding: 0 20px 0 20px;
+}
+
+#popUpHeader>img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#shareText {
+  color: var(--blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#loadingPopUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 550px;
+}
+
+#loadingPopUp>h1 {
+  white-space: nowrap;
+  font-size: 25px;
+}
+
+.loader {
+  background: var(--igGradient);
+  /* Show only 10px from the border */
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #fff 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 10px), #fff 0);
+  border-radius: 50%;
+  position: fixed;
+  inset: calc(50% - 50px);
+  animation: rot 1s linear infinite;
+}
+
+@keyframes rot {
+  100% {
+    transform: rotate(360deg);
+  }
+}

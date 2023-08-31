@@ -1,0 +1,78 @@
+#navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: var(--navBarHeight);
+  background-color: white;
+  border-left: none;
+  border-right: none;
+
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 5;
+}
+
+#iconContainer {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  column-gap: 20px;
+}
+
+.navBarIcon {
+  height: var(--iconHeight);
+  width: var(--iconHeight);
+  cursor: pointer;
+}
+
+#profilePic {
+  border-radius: 2rem;
+}
+
+.dropDown {
+  position: relative;
+}
+
+.upArrow {
+  width: 0;
+  height: 0;
+  border-left: var(--arrowSize) solid transparent;
+  border-right: var(--arrowSize) solid transparent;
+  border-bottom: var(--arrowSize) solid black;
+  display: none;
+
+  position: absolute;
+  left: calc((var(--iconHeight) - 2 * var(--arrowSize)) / 2);
+  top: calc(var(--iconHeight) + var(--arrowSize));
+}
+
+.profilePopUp {
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+
+  height: fit-content !important;
+  width: 200px !important;
+  cursor: pointer;
+  color: black;
+
+}
+
+.profilePopUp>a {
+  display: grid;
+  padding: 5px 0 5px 5px;
+  align-items: center;
+  grid-template-columns: min-content 1fr;
+  column-gap: 10px;
+
+  color: black;
+}
+
+.profilePopUp>a:hover {
+  background-color: var(--lighterGrey);
+}
+
+.profilePopUp>a>img {
+  width: 20px;
+  height: 20px;
+}

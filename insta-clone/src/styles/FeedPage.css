@@ -1,0 +1,242 @@
+#feedPage {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 10px;
+  justify-content: center;
+}
+
+#userAccount {
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
+  grid-template-rows: min-content;
+  column-gap: 10px;
+  align-items: center;
+  grid-row: 1/2;
+  grid-column: 2/-1;
+
+  padding-left: 10px;
+}
+
+#accountPicture {
+  width: var(--accountPictureWidth);
+  height: var(--accountPictureWidth);
+  border-radius: var(--accountPictureWidth);
+}
+
+#userName {
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0;
+  color: black;
+}
+
+#fullName {
+  white-space: nowrap;
+  margin: 0;
+}
+
+#signOut {
+  color: var(--blue);
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post {
+  width: var(--postWidth);
+  height: fit-content;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.postHeader {
+  display: grid;
+  grid-template-columns: repeat(2, min-content) 1fr;
+  align-items: center;
+  column-gap: 10px;
+
+  padding: 0 20px 0 10px;
+}
+
+.postUserNameLink {
+  width: min-content;
+}
+
+.postUserName {
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  color: black;
+}
+
+.postUserName.paddingLeft {
+  margin-top: 10px;
+  margin-bottom: 0;
+  display: block;
+}
+
+.postHeader>a>img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.postHeader>.moreIcon {
+  width: 20px;
+  height: 20px;
+  justify-self: flex-end;
+  cursor: pointer;
+}
+
+.postImage {
+  width: var(--postWidth);
+  height: var(--postWidth);
+}
+
+.iconBar {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  column-gap: 15px;
+  align-items: center;
+
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.commentIcon {
+  width: 27px;
+  height: 27px;
+}
+
+.iconBar>img {
+  width: var(--iconHeight);
+  height: var(--iconHeight);
+  cursor: pointer;
+}
+
+.iconBar>img:not(.pinkFilter):hover {
+  opacity: 0.5;
+}
+
+.likeCount {
+  padding-left: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.postText {
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: break-spaces;
+  height: min-content;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.postText.hidden {
+  display: inline;
+}
+
+.paddingLeft {
+  padding-left: 10px;
+}
+
+.moreText {
+  display: inline;
+  color: var(--grey);
+  cursor: pointer;
+}
+
+.pinkFilter {
+  filter: invert(38%) sepia(35%) saturate(3554%) hue-rotate(330deg) brightness(98%) contrast(90%);
+}
+
+.postTime {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.commentInputContainer {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+}
+
+.commentInputContainer>input {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.commentInputContainer>p {
+  color: var(--blue);
+  font-weight: bold;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.commentInputContainer>p.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  column-gap: 10px;
+  align-items: center;
+
+  padding-left: 10px;
+}
+
+.comment>a>p, .comment>p {
+  margin: 0;
+  margin-top: 5px;
+  overflow: auto;
+  white-space: nowrap;
+  color: black;
+}
+
+.comment>a>.userName {
+  font-weight: bold;
+}
+
+.comment>.moreIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#postMorePopUp {
+  width: min(500px, 100vw);
+  height: fit-content;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 10;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cancelText {
+  cursor: pointer;
+}
+
+.postType {
+  font-weight: bold;
+  font-size: 16px;
+}

@@ -1,0 +1,102 @@
+:root {
+  --grey: #8e8e8e;
+  --lightGrey: #dbdbdb;
+  --lighterGrey: #fafafa;
+  --blue: #0095f6;
+  --accountInputHeight: 30px;
+  --navBarHeight: 60px;
+  --iconHeight: calc(0.4 * var(--navBarHeight));
+  --accountPictureWidth: 50px;
+  --postHeight: 600px;
+  --postWidth: min(450px, 100vw);
+  --arrowSize: 10px;
+  --igGradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #b023cc 75%, #4418bc 100%);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button, a, h1, h2, h3, h4, h5, h6, p, input, label, textarea, div {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  border: none;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+img {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.box {
+  border: 1px solid var(--lightGrey);
+}
+
+.fullLine {
+  width: 100%;
+  height: 1px;
+  background-color: var(--lightGrey);
+}
+
+.grey {
+  color: var(--grey);
+}
+
+.smallText {
+  font-size: 0.6rem;
+}
+
+.popUpMenu {
+  display: grid;
+  grid-auto-rows: min-content;
+  text-align: center;
+  height: fit-content;
+}
+
+.popUpMenu>p {
+  cursor: pointer;
+}
+
+.popUpMenu>.redText {
+  color: red;
+  font-weight: bold;
+}
+
+.page {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+}
+
+.page#signUpPage {
+  margin-top: 0;
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.black {
+  color: black;
+}
+
+#postPage {
+  display: flex;
+  justify-content: center;
+}

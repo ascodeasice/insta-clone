@@ -1,0 +1,38 @@
+#signUpPage {
+  display: grid;
+  justify-content: center;
+  background-color: var(--lighterGrey);
+}
+
+.signUpTerm {
+  margin: 0.6rem 0 0 0;
+  color: var(--grey);
+  font-size: 0.6rem;
+}
+
+#signUpButton {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#signUpButton:disabled {
+  background-color: #b2dffc;
+  cursor: default;
+}
+
+#loginBox {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  grid-template-columns: min-content min-content;
+
+  border: 1px solid var(--lightGrey);
+  height: 50px;
+  background-color: white;
+  margin-top: 10px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}

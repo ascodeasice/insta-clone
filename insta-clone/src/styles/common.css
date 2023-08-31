@@ -1,0 +1,86 @@
+#accountInputContainer {
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr;
+  justify-content: center;
+
+  padding: 30px;
+  width: 250px;
+  background-color: white;
+  margin-top: 20px;
+  height: fit-content;
+}
+
+#accountInputContainer>input {
+  margin-top: 5px;
+  border: 1px solid var(--lightGrey);
+  background-color: var(--lighterGrey);
+  padding-left: 5px;
+  height: var(--accountInputHeight);
+  border-radius: 2px;
+}
+
+#accountInputContainer>input:focus {
+  outline: 0;
+  border: 1px solid var(--grey);
+}
+
+#googleIcon {
+  width: calc(var(--accountInputHeight) * 0.6);
+  height: calc(var(--accountInputHeight) * 0.6);
+  background-color: white;
+}
+
+#accountInputContainer>button {
+  border-radius: 2px;
+  height: var(--accountInputHeight);
+  z-index: 2;
+}
+
+.appName {
+  font-family: 'Pacifico', sans-serif;
+  user-select: none;
+  color: black;
+  font-weight: normal;
+}
+
+#introText {
+  color: var(--grey);
+  font-weight: bold;
+  margin: 0 10px 10px 10px
+}
+
+#orLine {
+  display: flex;
+  align-items: center;
+}
+
+#orLine>p {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: var(--grey);
+}
+
+#orLine>div {
+  background-color: var(--lightGrey);
+  height: 1px;
+  width: 100%;
+}
+
+#googleLoginButton {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, min-content);
+  column-gap: 5px;
+
+  border: none;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+  box-sizing: content-box;
+  cursor: pointer;
+}

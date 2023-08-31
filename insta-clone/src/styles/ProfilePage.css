@@ -1,0 +1,230 @@
+:root {
+  --profileWidth: max(60vw, var(--postWidth));
+  --postPictureGap: 20px;
+  --postPictureSize: calc((var(--profileWidth) - 2 * var(--postPictureGap))/ 3);
+}
+
+#profilePage {
+  background-color: var(--lighterGrey);
+  margin-top: calc(var(--navBarHeight) + 2px);
+  padding-top: 20px;
+
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-content: center;
+}
+
+#info {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(4, min-content);
+  column-gap: 20px;
+  justify-content: center;
+
+  width: var(--profileWidth);
+  margin-bottom: 20px;
+}
+
+#userPhoto {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  grid-row: 1/-1;
+  justify-self: center;
+}
+
+#info>#userName {
+  font-size: 25px;
+  font-weight: normal;
+}
+
+#editProfileButton {
+  white-space: nowrap;
+  border: 1px solid var(--lightGrey);
+  font-weight: bold;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  background-color: var(--lighterGrey);
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+#info>#fullName {
+  font-weight: bold;
+  grid-column: 2/-1;
+}
+
+#infoContainer {
+  grid-column: 2/-1;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  column-gap: 20px;
+}
+
+#infoContainer>p {
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+#info>#bio {
+  grid-column: 2/-1;
+  white-space: break-spaces;
+}
+
+#tabContainer {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  justify-content: center;
+  column-gap: 40px;
+
+  height: fit-content;
+}
+
+.tab {
+  margin-top: 0;
+  padding: 20px;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--grey);
+  font-size: 12px;
+  white-space: nowrap;
+
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  column-gap: 10px;
+}
+
+.tab>img {
+  height: 12px;
+  width: 12px;
+}
+
+.tab.chosen {
+  border-top: 1px solid black;
+  color: black;
+}
+
+.greyFilter {
+  filter: invert(58%) sepia(0%) saturate(1257%) hue-rotate(142deg) brightness(95%) contrast(108%);
+}
+
+.posts {
+  width: var(--profileWidth);
+  position: relative;
+
+  row-gap: var(--postPictureGap);
+  column-gap: var(--postPictureGap);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--postPictureSize));
+  grid-template-rows: repeat(auto-fill, var(--postPictureSize));
+}
+
+.postContainer>img {
+  width: var(--postPictureSize);
+  height: var(--postPictureSize);
+  cursor: pointer;
+}
+
+.postContainer>div {
+  background-color: black;
+  /* opacity */
+  background: rgba(0, 0, 0, 0.5);
+  width: var(--postPictureSize);
+  height: var(--postPictureSize);
+  position: absolute;
+  top: 0;
+}
+
+.postBlockIcon {
+  width: 30px;
+  height: 30px;
+  z-index: 20;
+}
+
+.postBlockText {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.whiteFilter {
+  filter: invert(83%) sepia(100%) saturate(0%) hue-rotate(126deg) brightness(103%) contrast(101%);
+}
+
+.hoverBackground {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.posts>p {
+  grid-column: 1/-1;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.followButton {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  white-space: nowrap;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.unfollowButton {
+  background-color: var(--lighterGrey);
+  color: black;
+  font-weight: bold;
+  border-radius: 2px;
+  white-space: nowrap;
+  height: 30px;
+  align-self: center;
+  width: 90px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid var(--grey);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.emptyPosts {
+  grid-row: 1/3;
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.emptyPosts>.roundIconWrapper>.emptyPostsIcon {
+  padding: 5px;
+}
+
+.emptyPostsHeading {
+  font-size: 30px;
+  white-space: nowrap;
+}
+
+.emptyPostsText {
+  font-size: 14px;
+  white-space: break-spaces;
+  margin-top: 0;
+}

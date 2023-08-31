@@ -1,0 +1,86 @@
+#likePopUp {
+  position: absolute;
+  top: calc((var(--navBarHeight) + var(--iconHeight)) / 2 + 2px);
+  right: 0;
+
+  display: none;
+  width: max(300px, 35vw);
+  height: 300px;
+  z-index: 5;
+  background-color: white;
+  box-shadow: 0 0 3px grey;
+  border-radius: 2px;
+  color: black;
+  overflow: auto;
+}
+
+.popUpTitle {
+  font-weight: bold;
+  padding-left: 10px;
+  color: black;
+}
+
+.likePostEvent {
+  display: grid;
+  grid-template-columns: repeat(4, min-content) 1fr;
+  column-gap: 10px;
+  align-items: center;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+.likePostEvent>.userName {
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.likePostEvent>p, .likePostEvent>a {
+  white-space: nowrap;
+  margin: 0;
+  font-size: 14px;
+}
+
+.likePostEvent>a>.profilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.likePostEvent>a:last-child {
+  justify-self: end;
+}
+
+.likePostEvent>a>.postImage {
+  width: 40px;
+  height: 40px;
+  justify-self: end;
+}
+
+.likePostEvent>.time {
+  color: var(--grey);
+  font-size: 12px;
+}
+
+#emptyLikePopUp {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 10px 20px 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.roundIconWrapper {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.likeIcon.roundBorder {
+  width: 40px;
+  height: 40px;
+}
