@@ -1,4 +1,7 @@
 # insta-clone
+
+NOTE: the original project commit history is gone because of requirement to remove api key in project
+
 A clone of the Instagram website, recreate its design and its main features.
 You can:
 - Share photos with/without text
